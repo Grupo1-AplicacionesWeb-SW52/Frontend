@@ -24,10 +24,12 @@ import 'primevue/resources/themes/mdc-light-indigo/theme.css';
 // PrimeVue Services
 import ToastService from 'primevue/toastservice';
 import ConfirmationService from "primevue/confirmationservice";
+import DialogService from "primevue/dialogservice";
 
 // PrimeVue Components
 import DataTable        from "primevue/datatable";
 import Column           from "primevue/column";
+import ConfirmDialog    from "primevue/confirmdialog";
 import Row              from "primevue/row";
 import Toolbar          from "primevue/toolbar";
 import InputText        from "primevue/inputtext";
@@ -47,11 +49,11 @@ import InputNumber      from "primevue/inputnumber";
 import FloatLabel       from "primevue/floatlabel";
 import Checkbox         from "primevue/checkbox";
 import Rating           from "primevue/rating";
-import ConfirmDialog    from "primevue/confirmdialog";
 
 createApp(App)
     .use(router)
-    .use(PrimeVue, { ripple: true })
+    .use(PrimeVue,{ ripple: true })
+    .use(DialogService)
     .use(ConfirmationService)
     .use(ToastService)
     .component('pv-button',         Button)
