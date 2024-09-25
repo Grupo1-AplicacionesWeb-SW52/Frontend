@@ -1,29 +1,16 @@
-# learning-center-vue
+# ACME Learning Center Web Application
 
-This template should help get you started developing with Vue 3 in Vite.
+## Summary
+ACME Learning Center Application, illustrating REST client with axios on a simulated API with json-server, using Vue Framework and PrimeVue
+UI Component Library. The application also shows how to support in-app navigation routing.
 
-## Recommended IDE Setup
+## Features - REST client with axios - Simulated API with json-server - PrimeVue UI Component Library - In-app navigation routing - Reusable components
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Dependencies - Vue - Axios - PrimeVue - Vue Router - json-server
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
+## Mock API Start
+Write the following commands in the terminal to start the mock API server.
+```bash 
+cd server 
+sh start.sh 
 ```
