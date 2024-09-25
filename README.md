@@ -1,16 +1,24 @@
-# ACME Learning Center Web Application
+# FrontendApp
 
-## Summary
-ACME Learning Center Application, illustrating REST client with axios on a simulated API with json-server, using Vue Framework and PrimeVue
-UI Component Library. The application also shows how to support in-app navigation routing.
+This project was generated with [Vue.js](https://vuejs.org/) and [PrimeVue](https://primevue.org/)
 
-## Features - REST client with axios - Simulated API with json-server - PrimeVue UI Component Library - In-app navigation routing - Reusable components
+## Development server
 
-## Dependencies - Vue - Axios - PrimeVue - Vue Router - json-server
+Run `npm run dev` for a dev server. Navigate to `http://localhost:/`. The application will automatically reload if you change any of the source files.
 
-## Mock API Start
-Write the following commands in the terminal to start the mock API server.
-```bash 
-cd server 
-sh start.sh 
-```
+## Build
+
+To build the project and generate the production files, run the following command: `npm run build`. The construction artifacts will be stored in the directory `dist/`.
+
+## Running unit tests
+
+Run `npm run test` to execute the unit tests via [Mocha](https://mochajs.org/).
+
+
+## Running end-to-end tests
+
+Install `npm install cypress --save-dev` and run `npx cypress open` for execute the end-to-end tests via platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+##Further Help
+
+To get more help on the Vue.js go check out their [page](https://apollo.primevue.org/documentation).
