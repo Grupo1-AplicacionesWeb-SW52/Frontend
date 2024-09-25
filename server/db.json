@@ -4,18 +4,18 @@
       "id": 1,
       "title": "The Vue Tutorials",
       "description": "The best tips and tutorials for Vue.",
-      "published": true
+      "published": false
     },
     {
       "id": 2,
-      "title": "Amazing Microsoft .NET,",
+      "title": "Amazing Microsoft .NET",
       "description": "Weekly tutorials about .NET and ASP.NET Core.",
       "published": false
     },
     {
       "id": 3,
       "title": "JavaScript for All",
-      "description": "Tips and tricks about JavaScript from scratch.",
+      "description": "Tips an tricks about JavaScript from scratch.",
       "published": false
     },
     {
@@ -23,26 +23,32 @@
       "title": "Vue Unleashed",
       "description": "Vue at its best.",
       "published": false
+    }
+  ],
+  "shop": [
+    {
+      "id": 1,
+      "address": "Calle Juan Martín",
+      "type": "frutería",
+      "nombre": "Lola Castro Frutas",
+      "latitude": 37.880273,
+      "longitude": -4.792098
     },
     {
-      "id": 5,
-      "title": "ASP.NET Code Advanced",
-      "description": "What nobody tells you about ASP.NET Core.",
-      "published": false
+      "id": 2,
+      "address": "Calle Pepe Cruz",
+      "type": "supermercado",
+      "nombre": "Ultramarinos Lolo Castro",
+      "latitude": 37.862323,
+      "longitude": -4.77812
     },
     {
-      "id": 6,
-      "title": "Vue Advanced",
-      "description": "Vue Advanced Tips and Tricks to the Edge",
-      "published": false,
-      "status": "Unpublished"
-    },
-    {
-      "id": 7,
-      "title": "Sample",
-      "description": "Sample",
-      "published": false,
-      "status": "Unpublished"
+      "id": 3,
+      "address": "Avenida de la Cruz",
+      "type": "pescadería",
+      "nombre": "Pescados El Boquerón",
+      "latitude": 37.856273,
+      "longitude": -4.776992
     }
   ]
 }

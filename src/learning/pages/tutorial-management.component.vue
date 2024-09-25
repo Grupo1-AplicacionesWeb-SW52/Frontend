@@ -1,15 +1,15 @@
 <script>
 import DataManager from "../../shared/components/data-manager.component.vue";
-import TutorialItemCreateAndEditDialog from "../../learning/shared/components/tutorial-item-create-and-edit-dialog.component.vue";
+import TutorialItemCreateAndEditDialog from "../components/tutorial-item-create-and-edit-dialog.component.vue";
 import {Tutorial} from "../model/tutorial.entity.js";
-import {TutorialsApiService} from "src/learning/shared/services/tutorial-api.service.vue";
+import {TutorialsApiService} from "../services/tutorials-api.service.js";
 
 export default {
   name: "tutorial-management",
   components: {TutorialItemCreateAndEditDialog, DataManager},
   data() {
     return {
-      title: { singular: 'Tutorial', plural: 'Tutorials' },
+      title: {singular: 'Tutorial', plural: 'Tutorials'},
       tutorials: [],
       tutorial: {},
       selectedTutorials: [],
@@ -31,9 +31,12 @@ export default {
     // Get the severity color according to status
     getSeverity(status) {
       switch (status) {
-        case 'Published': return 'success';
-        case 'Unpublished': return 'info';
-        default:  return null;
+        case 'Published':
+          return 'success';
+        case 'Unpublished':
+          return 'info';
+        default:
+          return null;
       }
     },
 
@@ -138,7 +141,7 @@ export default {
     deleteSelectedTutorials() {
       this.selectedTutorials.forEach((tutorial) => {
         this.tutorialsService.delete(tutorial.id).then(() => {
-          this.tutorials = this.tutorials.filter((t) => t.id !== this.tutorial.id);
+          this.tutorials = this.tutorials.filter((t) => t.id !== tutorial.id);
         });
       });
       this.notifySuccessfulAction("Tutorials Deleted");
@@ -169,10 +172,10 @@ export default {
         v-on:delete-item="onDeleteItemEventHandler($event)"
         v-on:delete-selected-items="onDeleteSelectedItemsEventHandler($event)">
       <template #custom-columns>
-        <pv-column :sortable="true" field="id"          header="Id"           style="min-width: 12rem"/>
-        <pv-column :sortable="true" field="title"       header="Title"        style="min-width: 16rem"/>
-        <pv-column :sortable="true" field="description" header="Description"  style="min-width: 16rem"/>
-        <pv-column :sortable="true" field="status"      header="Status"       style="min-width: 16rem">
+        <pv-column :sortable="true" field="id" header="Id" style="min-width: 12rem"/>
+        <pv-column :sortable="true" field="title" header="Title" style="min-width: 16rem"/>
+        <pv-column :sortable="true" field="description" header="Description" style="min-width: 16rem"/>
+        <pv-column :sortable="true" field="status" header="Status" style="min-width: 16rem">
           <template #body="slotProps">
             <pv-tag :severity="getSeverity(slotProps.data.status)" :value="slotProps.data.status"/>
           </template>

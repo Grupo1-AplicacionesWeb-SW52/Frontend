@@ -7,7 +7,7 @@
 import {createRouter, createWebHistory} from "vue-router";
 import HomeComponent from "../public/pages/home.component.vue";
 import AboutComponent from "../public/pages/about.component.vue";
-import TutorialManagementComponent from "../news/pages/tutorial-management.component.vue";
+import TutorialManagementComponent from "../learning/pages/tutorial-management.component.vue";
 
 const router = createRouter({
   history: createWebHistory(),

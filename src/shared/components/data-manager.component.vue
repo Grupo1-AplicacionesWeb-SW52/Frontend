@@ -16,7 +16,13 @@ export default {
       filters: null
     }
   },
+  created() {
+    this.initFilters();
+  },
   methods: {
+    initFilters() {
+      this.filters = {global: {value: null, matchMode: FilterMatchMode.CONTAINS}};
+    },
     newItem() {
       this.$emit('new-item');
     },

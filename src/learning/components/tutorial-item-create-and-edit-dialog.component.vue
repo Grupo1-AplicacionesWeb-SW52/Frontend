@@ -1,5 +1,5 @@
 <script>
-import CreateAndEdit from "../../../shared/components/create-and-edit.component.vue";
+import CreateAndEdit from "../../shared/components/create-and-edit.component.vue";
 
 export default {
   name: "tutorial-item-create-and-edit-dialog",
@@ -32,9 +32,6 @@ export default {
     savedEventHandler() {
       console.log(this.item);
       this.submitted = true;
-      if (this.item.title) {
-        this.$emit('saved', this.item);
-      }
     }
   }
 }
@@ -48,7 +45,7 @@ export default {
         <div class="field mt-5">
           <pv-float-label>
             <label for="title">Title</label>
-            <pv-input-text id="title" v-model="item.title" :class="{'p-invalid': submitted && !tutorial.title}"/>
+            <pv-input-text id="title" v-model="item.title" :class="{'p-invalid': submitted && !item.title}"/>
             <small v-if="submitted && !item.title" class="p-invalid">Title is required.</small>
           </pv-float-label>
         </div>
