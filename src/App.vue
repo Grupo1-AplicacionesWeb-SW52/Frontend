@@ -1,39 +1,103 @@
 <script>
+import {FilterMatchMode} from "primevue/api";
+
 export default {
-  name: 'app',
-  title: 'ACME Learning Center',
+  name: "data-manager",
+  props: {
+    items: {type: Array, required: true},
+    title:  {type: { singular: '', plural: ''}, required: true},
+    dynamic: {type: Boolean, default: false},
+    columns: {type: Array, default: () => []},
+  },
   data() {
     return {
-      drawer: false,
-      items: [
-        { label: 'Home', to: '/home' },
-        { label: 'About', to: '/about' },
-        { label: 'Tutorials', to: '/tutorials' }
-      ]
-    };
+      selectedItems: [],
+      filters: null
+    }
+  },
+  created() {
+    this.initFilters();
   },
   methods: {
-    toggleDrawer() {
-      this.drawer = !this.drawer;
-    }
-  }
+    initFilters() {
+      this.filters = {global: {value: null, matchMode: FilterMatchMode.CONTAINS}};
+    },
+    newItem() {
+      this.$emit('new-item');
+    },
+    confirmDeleteSelected() {
+      this.$confirm.require({
+        message:          `Are you sure you want to delete the selected ${this.title.plural}?`,
+        header:           'Confirmation',
+        icon:             'pi pi-exclamation-triangle',
+        rejectClassName:  'p-button-secondary p-button-outlined',
+        rejectLabel:      'Cancel',
+        acceptLabel:      'Delete',
+        acceptClassName:  'p-button-danger',
+        accept:           () => this.$emit('delete-selected-items', this.selectedItems),
+        reject:           () => {}
+      });
+    },
+    exportToCsv() {
+      this.$refs.dt.exportCSV()
+    },
+    editItem(item) {
+      this.$emit('edit-item', item);
+    },
+    confirmDeleteItem(item) {
+      this.$confirm.require({
+        message:          `Are you sure you want to delete this ${this.title.singular}?`,
+        header:           'Confirmation',
+        icon:             'pi pi-exclamation-triangle',
+        rejectClassName:  'p-button-secondary p-button-outlined',
+        rejectLabel:      'Cancel',
+        acceptLabel:      'Delete',
+        acceptClassName:  'p-button-danger',
+        accept:           () => this.$emit('delete-item', item),
+        reject:           () => {}
+      });
+    },
+  },
 }
 </script>
+
 <template>
-  <pv-toast></pv-toast>
-  <header>
-    <pv-toolbar class="bg-primary" fixed>
-      <template #start>
-        <pv-button class="p-button-text text-white" icon="pi pi-bars" @click="toggleDrawer" />
-        <h3>ACME Learning Center</h3>
-        <div class="flex-column">
-          <router-link v-for="item in items" :key="item.label" v-slot="{ navigate, href}" :to="item.to" custom>
-            <pv-button :href="href" class="p-button-text text-white" @click="navigate">{{ item.label }}</pv-button>
-          </router-link>
-        </div>
+  <pv-toast/>
+  <pv-confirm-dialog/>
+  <h3>Manage {{ title.plural }}</h3>
+  <!-- Toolbar Section -->
+  <pv-toolbar class="mb-4">
+    <template #start>
+      <pv-button class="mr-2" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
+      <pv-button :disabled="!selectedItems || !selectedItems.length" icon="pi pi-trash" label="Delete" severity="danger"
+                 @click="confirmDeleteSelected"/>
+    </template>
+    <template #end>
+      <pv-button icon="pi pi-download" label="Export" severity="help" @click="exportToCsv($event)"/>
+    </template>
+  </pv-toolbar>
+
+
+  <!-- Data Table Section -->
+  <pv-data-table
+      ref="dt"
+      v-model:selection="selectedItems"
+      :filters="filters"
+      :paginator="true"
+      :rows="10"
+      :rows-per-page-options="[5, 10, 20]"
+      :value="items"
+      current-page-report-template="Showing {first} to {last} of {totalRecords} ${{title.plural}}"
+      data-key="id"
+      paginator-template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown">
+    <slot name="custom-columns"></slot>
+    <pv-column v-if="dynamic" v-for="column in columns" :key="column.field" :field="column.field" :header="column.header"/>
+    <pv-column :exportable="false" style="min-width:8rem">
+      <template #body="slotProps">
+        <pv-button icon="pi pi-pencil" outlined rounded class="mr-2" @click="editItem(slotProps.data)"/>
+        <pv-button icon="pi pi-trash" outlined rounded severity="danger" @click="confirmDeleteItem(slotProps.data)"/>
       </template>
-    </pv-toolbar>
-  </header>
-  <pv-sidebar v-model:visible="drawer"/>
-  <router-view/>
+    </pv-column>
+  </pv-data-table>
+
 </template>
