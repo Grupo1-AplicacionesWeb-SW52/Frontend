@@ -1,6 +1,9 @@
 <script>
+import {FilterMatchMode} from "primevue/api";
+
 export default {
   name: "data-manager",
+  inheritAttrs: false,
   props: {
     items: {type: Array, required: true},
     title:  {type: { singular: '', plural: ''}, required: true},
@@ -82,6 +85,7 @@ export default {
       current-page-report-template="Showing {first} to {last} of {totalRecords} ${{title.plural}}"
       data-key="id"
       paginator-template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown">
+    <pv-column :exportable="false" selectionMode="multiple" style="width: 3rem"/>
     <slot name="custom-columns"></slot>
     <pv-column v-if="dynamic" v-for="column in columns" :key="column.field" :field="column.field" :header="column.header"/>
     <pv-column :exportable="false" style="min-width:8rem">
