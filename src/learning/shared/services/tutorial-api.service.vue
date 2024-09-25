@@ -7,7 +7,7 @@ import http from "shared/services/http-common.js";
 
 export class TutorialsApiService {
   /**
-   * Get all tutorials
+   * Get item tutorials
    * @returns {Promise<axios.AxiosResponse<any>>}
    */
   getAll() {
@@ -24,7 +24,7 @@ export class TutorialsApiService {
   }
 
   /**
-   * Create a new tutorial
+   * Create a new item
    * @param tutorialResource - tutorial object to create
    * @returns {Promise<axios.AxiosResponse<any>>}
    */
@@ -33,9 +33,9 @@ export class TutorialsApiService {
   }
 
   /**
-   * Update a tutorial
-   * @param id - tutorial id to update
-   * @param tutorialResource - tutorial object with data
+   * Update a item
+   * @param id - item id to update
+   * @param tutorialResource - item object with data
    * @returns {Promise<axios.AxiosResponse<any>>}
    */
   update(id, tutorialResource) {
@@ -43,8 +43,8 @@ export class TutorialsApiService {
   }
 
   /**
-   * Delete a tutorial
-   * @param id - tutorial id to delete
+   * Delete a item
+   * @param id - item id to delete
    * @returns {Promise<axios.AxiosResponse<any>>}
    */
   delete(id) {
@@ -52,8 +52,8 @@ export class TutorialsApiService {
   }
 
   /**
-   * Delete all tutorials that match the given title
-   * @param title - tutorial title to apply as criteria
+   * Delete all items that match the given title
+   * @param title - item title to apply as criteria
    * @returns {Promise<axios.AxiosResponse<any>>}
    */
   findByTitle(title) {
