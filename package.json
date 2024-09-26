@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.7.7",
+    "axios": "^1.6.8",
     "dotenv": "^16.4.5",
     "learning-center": "file:",
     "pinia": "^2.1.7",
