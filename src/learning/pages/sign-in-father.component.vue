@@ -8,7 +8,7 @@ import router from "../../router/index.js";
 
 
 export default {
-  name: 'SignInComponent',
+  name: 'SignInFatherComponent',
   components: {
     InputText,
     Password,
@@ -36,78 +36,103 @@ export default {
   },
 };
 </script>
-
-
 <template>
   <div class="sign-in-container">
-    <h2>Sign In</h2>
+    <h2>Welcome!</h2>
     <form @submit.prevent="handleSignIn">
       <div class="form-group">
         <label for="email">Email:</label>
-        <input
-            type="email"
+        <InputText
             id="email"
             v-model="email"
             required
             placeholder="Enter your email"
+            class="p-inputtext-sm p-d-block"
         />
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input
-            type="password"
+        <Password
             id="password"
             v-model="password"
             required
             placeholder="Enter your password"
+            feedback="false"
+            toggleMask
+            class="p-password-sm"
         />
       </div>
-      <button type="submit">Sign In</button>
+      <Button
+          type="submit"
+          label="Sign In"
+          class="p-button-raised p-button-rounded p-button-primary"
+          style="width: 100%;"
+      />
     </form>
     <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
+    <div class="sign-up-link">
+      <span>Don't have an account? </span>
+      <RouterLink to="/sign-up-father" class="link">Create a new one</RouterLink>
+    </div>
   </div>
 </template>
-
 <style>
 .sign-in-container {
   max-width: 400px;
   margin: auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  background-color: #0f5171;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 label {
   display: block;
-  margin-bottom: 5px;
+  color: #fff;
+  margin-bottom: 8px;
+  font-size: 16px;
 }
 
-input {
+.p-inputtext-sm,
+.p-password-sm {
   width: 100%;
   padding: 8px;
-  box-sizing: border-box;
-}
-
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px;
-  border: none;
   border-radius: 4px;
-  cursor: pointer;
+  border: 1px solid #ccc;
+  font-size: 14px;
 }
 
-button:hover {
-  background-color: #45a049;
+button.p-button {
+  margin-top: 20px;
+  width: 100%;
 }
 
 .error {
   color: red;
   margin-top: 10px;
+}
+
+.sign-up-link {
+  margin-top: 20px;
+  color: #fff;
+}
+
+.link {
+  color: #4caf50;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
 }
 </style>

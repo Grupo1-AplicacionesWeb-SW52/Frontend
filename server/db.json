@@ -27,5 +27,16 @@
       "password": "password4957",
       "id": 3
     }
+  ],
+  "user-child-care": [
+    {
+      "name": "Pedro",
+      "surname": "Castro",
+      "email": "appsweb@gmail.com",
+      "document": "74118340",
+      "phoneNumber": "456789123",
+      "password": "password8756",
+      "id": 1
+    }
   ]
 }

@@ -6,7 +6,7 @@ import Button from 'primevue/button';
 import router from '../../router/index.js';
 
 export default {
-  name: 'SignUpComponent',
+  name: 'SignUpFatherComponent',
   components: {
     InputText,
     Password,
@@ -70,42 +70,42 @@ export default {
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <Password id="password" v-model="password" required placeholder="Enter your password" />
+        <Password id="password" v-model="password" required placeholder="Enter your password" toggleMask />
       </div>
-      <Button type="submit" label="Sign Up" />
+      <Button type="submit" label="Sign Up" class="p-button-raised p-button-rounded" />
     </form>
-    <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
-    <div v-if="successMessage" class="success">{{ successMessage }}</div>
+    <p-message v-if="errorMessage" severity="error" :content="errorMessage"></p-message>
+    <p-message v-if="successMessage" severity="success" :content="successMessage"></p-message>
   </div>
 </template>
 
-
-<style>
+<style scoped>
 .sign-up-container {
-  max-width: 400px;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+  background: linear-gradient(to bottom, #396583, #013b58);
+}
+
+h2 {
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 400px;
 }
 
 label {
+  font-size: 14px;
+  color: white;
+  margin-bottom: 8px;
   display: block;
-  margin-bottom: 5px;
-}
-
-.error {
-  color: red;
-  margin-top: 10px;
-}
-
-.success {
-  color: green;
-  margin-top: 10px;
 }
 </style>

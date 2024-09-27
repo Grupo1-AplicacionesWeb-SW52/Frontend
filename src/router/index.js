@@ -8,8 +8,10 @@ import {createRouter, createWebHistory} from "vue-router";
 import HomeComponent from "../public/pages/home.component.vue";
 import AboutComponent from "../public/pages/about.component.vue";
 import TutorialManagementComponent from "../learning/pages/tutorial-management.component.vue";
-import SignUpComponent  from "../learning/pages/sign-up.component.vue";
-import SignInComponent from "../learning/pages/sign-in.component.vue";
+import SignUpFatherComponent  from "../learning/pages/sign-up-father.component.vue";
+import SignInFatherComponent from "../learning/pages/sign-in-father.component.vue";
+import SignInChildCareComponent from "../learning/pages/sign-in-child-care.component.vue";
+import SignUpChildCareComponent from "../learning/pages/sign-up-child-care.component.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -17,8 +19,10 @@ const router = createRouter({
     { path: '/home',    component: HomeComponent, meta: { title: 'Home' } },
     { path: '/tutorials', component: TutorialManagementComponent, meta: { title: 'Tutorials' } },
     { path: '/about',   component: AboutComponent, meta: { title: 'About us' } },
-    { path: '/sign-up', component: SignUpComponent, meta: { title: 'Sign Up' }},
-    { path: '/sign-in', component: SignInComponent, meta: { title: 'Sign In' }},
+    { path: '/sign-up-father', component: SignUpFatherComponent},
+    { path: '/sign-in-father', component: SignInFatherComponent},
+    {path: '/sign-in-child', component: SignInChildCareComponent},
+    {path: '/sign-up-child', component: SignUpChildCareComponent},
     { path: '/',        redirect: '/home' },
   ],
 });
