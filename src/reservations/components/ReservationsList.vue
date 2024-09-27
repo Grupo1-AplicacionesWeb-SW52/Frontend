@@ -9,7 +9,7 @@
 
 <script>
 import ReservationCard from './ReservationCard.vue';
-import reservationsApi from '@/reservations/services/reservations-api.service.js';
+import reservationsApi from '../../reservations/services/reservations-api.service.js';
 
 export default {
   components: {
