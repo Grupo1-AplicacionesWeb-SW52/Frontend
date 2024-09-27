@@ -8,6 +8,24 @@
       "document": "12345678",
       "phoneNumber": "555-1234",
       "password": "password123"
+    },
+    {
+      "id": 2,
+      "name": "Renzo",
+      "surname": "Perez",
+      "email": "renzo@example.com",
+      "document": "87654321",
+      "phoneNumber": "555-5678",
+      "password": "password456"
+    },
+    {
+      "name": "Juan",
+      "surname": "Castro",
+      "email": "appsweb@gmail.com",
+      "document": "561487",
+      "phoneNumber": "123456789",
+      "password": "password4957",
+      "id": 3
     }
   ]
 }

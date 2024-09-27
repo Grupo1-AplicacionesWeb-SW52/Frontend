@@ -1,5 +1,4 @@
 <script>
-import { reactive } from 'vue';
 import {UserFatherService} from "../services/user-father.service.js";
 //import { UserFather } from "../model/user-father.entity.js";
 import InputText from 'primevue/inputtext';
@@ -29,8 +28,7 @@ export default {
         const user = await userService.signIn(this.email, this.password);
         console.log('User signed in:', user);
         // Redirigir al home (implementa la redirección según tu lógica)
-        // Por ejemplo, podrías usar Vue Router:
-        // this.$router.push('/home');
+        await router.push('/home');
       } catch (error) {
         this.errorMessage = error.message || 'An error occurred during sign-in.';
       }
@@ -38,6 +36,7 @@ export default {
   },
 };
 </script>
+
 
 <template>
   <div class="sign-in-container">

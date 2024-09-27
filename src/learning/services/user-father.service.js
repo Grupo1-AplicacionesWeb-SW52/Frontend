@@ -6,7 +6,15 @@ export class UserFatherService {
     }
 
     // Método para el sign-up (creación de un nuevo usuario)
-    async signUp(user) {
+    async signUp(name, surname, email, document, phoneNumber, password) {
+        const user = {
+            name,
+            surname,
+            email,
+            document,
+            phoneNumber,
+            password
+        };
         try {
             const response = await axios.post(this.apiUrl, user);
             return response.data;  // Asegúrate de que 'data' sea correctamente accedido
