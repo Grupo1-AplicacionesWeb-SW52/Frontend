@@ -1,66 +1,111 @@
+<template>
+  <div class="sign-up-container">
+    <h2>Sign Up</h2>
+    <form @submit.prevent="handleSignUp">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <InputText id="name" v-model="name" required placeholder="Enter your name" />
+      </div>
+      <div class="form-group">
+        <label for="surname">Surname:</label>
+        <InputText id="surname" v-model="surname" required placeholder="Enter your surname" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <InputText type="email" id="email" v-model="email" required placeholder="Enter your email" />
+      </div>
+      <div class="form-group">
+        <label for="document">Document:</label>
+        <InputText id="document" v-model="document" required placeholder="Enter your document number" />
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <InputText id="phoneNumber" v-model="phoneNumber" required placeholder="Enter your phone number" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <Password id="password" v-model="password" required placeholder="Enter your password" />
+      </div>
+      <Button type="submit" label="Sign Up" />
+    </form>
+    <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
+    <div v-if="successMessage" class="success">{{ successMessage }}</div>
+  </div>
+</template>
+
 <script>
 import { reactive } from 'vue';
-import AuthService from "../services/auth.Service.js";
-import InputText from "primevue/inputtext";
-import Password from "primevue/password";
-import Button from "primevue/button";
-
+import { UserFatherService } from '../services/user-father.service.js';
+import InputText from 'primevue/inputtext';
+import Password from 'primevue/password';
+import Button from 'primevue/button';
+import router from '../../router/index.js';
 
 export default {
+  name: 'SignUpComponent',
   components: {
-    'InputText': InputText,
-    'Password': Password,
-    'Button': Button
+    InputText,
+    Password,
+    Button,
   },
-  setup() {
-
-    const user = reactive({
+  data() {
+    return {
       name: '',
       surname: '',
       email: '',
       document: '',
       phoneNumber: '',
       password: '',
-      retypePassword: '',
-    });
-
-    const handleSignUp = async () => {
-      if (user.password !== user.retypePassword) {
-        alert("Passwords do not match!");
-        return;
-      }
+      errorMessage: '',
+      successMessage: '',
+    };
+  },
+  methods: {
+    async handleSignUp() {
+      const userService = new UserFatherService();
       try {
-        const response = await AuthService.signUp(user);
-        console.log('User signed up:', response.data);
-        // Redirigir o realizar otras acciones tras el registro
+        await userService.signUp(this.name, this.surname, this.email, this.document, this.phoneNumber, this.password);
+        this.successMessage = 'User registered successfully!';
+        this.errorMessage = '';
+        // Redirigir al SignIn después de un registro exitoso
+        setTimeout(() => {
+          router.push('/sign-in');
+        }, 2000); // Espera 2 segundos antes de redirigir
       } catch (error) {
-        console.error('Sign Up failed:', error);
+        this.errorMessage = error.message || 'An error occurred during sign-up.';
+        this.successMessage = '';
       }
-    };
-
-    return {
-      user,
-      handleSignUp,
-    };
+    },
   },
 };
 </script>
-<template>
-  <div class="signup-container">
-    <h2>Sign Up</h2>
-    <form @submit.prevent="handleSignUp">
-      <InputText v-model="user.name" placeholder="Name" />
-      <InputText v-model="user.surname" placeholder="Surname" />
-      <InputText v-model="user.email" placeholder="Email" />
-      <InputText v-model="user.document" placeholder="Document (DNI)" />
-      <InputText v-model="user.phoneNumber" placeholder="Phone Number" />
-      <Password v-model="user.password" placeholder="Password" />
-      <Password v-model="user.retypePassword" placeholder="Retype Password" />
-      <Button label="Sign Up" type="submit" />
-    </form>
-  </div>
-</template>
+
 <style>
+.sign-up-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
 
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+.success {
+  color: green;
+  margin-top: 10px;
+}
 </style>
-

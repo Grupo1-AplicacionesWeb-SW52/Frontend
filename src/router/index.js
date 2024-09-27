@@ -17,8 +17,8 @@ const router = createRouter({
     { path: '/home',    component: HomeComponent, meta: { title: 'Home' } },
     { path: '/tutorials', component: TutorialManagementComponent, meta: { title: 'Tutorials' } },
     { path: '/about',   component: AboutComponent, meta: { title: 'About us' } },
-    {path: '/sign-up', component: SignUpComponent, meta: { title: 'Sign Up' }},
-    {path: '/sign-in', component: SignInComponent, meta: { title: 'Sign In' }},
+    { path: '/sign-up', component: SignUpComponent, meta: { title: 'Sign Up' }},
+    { path: '/sign-in', component: SignInComponent, meta: { title: 'Sign In' }},
     { path: '/',        redirect: '/home' },
   ],
 });

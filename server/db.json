@@ -1,5 +1,5 @@
 {
-  "users": [
+  "user-father": [
     {
       "id": 1,
       "name": "John",
@@ -9,9 +9,5 @@
       "phoneNumber": "555-1234",
       "password": "password123"
     }
-  ],
-  "auth": {
-    "signin": [],
-    "signup": []
-  }
+  ]
 }
