@@ -39,7 +39,7 @@ const router = createRouter({
 			component: ReservationsPageComponent,
 			meta: { title: 'Reservation' },
 		},
-		{ path: '/', redirect: '/home' },
+		{ path: '/', redirect: '/sign-in-father' },
 	],
 });
 
