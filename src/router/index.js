@@ -12,6 +12,7 @@ import SignInFatherComponent from '../auth/pages/sign-in-father.component.vue';
 import SignInChildCareComponent from '../auth/pages/sign-in-child-care.component.vue';
 import SignUpChildCareComponent from '../auth/pages/sign-up-child-care.component.vue';
 import CaregiverSearch from '../searches/pages/caregiver-search.vue';
+import PaymentPageComponent from '../payment/pages/payment-page.component.vue';
 
 const router = createRouter({
 	history: createWebHistory(),
@@ -23,6 +24,11 @@ const router = createRouter({
 		{ path: '/sign-in-child', component: SignInChildCareComponent },
 		{ path: '/sign-up-child', component: SignUpChildCareComponent },
 		{ path: '/search', component: CaregiverSearch, meta: { title: 'Search' } },
+		{
+			path: '/payment',
+			component: PaymentPageComponent,
+			meta: { title: 'Payment' },
+		},
 		{ path: '/', redirect: '/home' },
 	],
 });

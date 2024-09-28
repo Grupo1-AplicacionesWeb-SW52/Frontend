@@ -8,7 +8,8 @@ export default {
       items: [
         { label: 'Home', to: '/home' },
         { label: 'About', to: '/about' },
-        { label: 'Search', to: '/search'}
+        { label: 'Search', to: '/search'},
+        {label:'Payment',to:'/payment'}
       ]
     };
   },
