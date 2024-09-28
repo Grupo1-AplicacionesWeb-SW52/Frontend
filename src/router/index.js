@@ -1,30 +1,43 @@
-/**
- * Vue Router
- * @description: Vue Router configuration
- * @docs: https://router.vuejs.org/
- */
+import { createRouter, createWebHistory } from 'vue-router';
+import ProfileDetails from '../components/profile/ProfileDetails.vue';
+import ProfileBiography from '../components/profile/ProfileBiography.vue';
+import ProfileHeader from '../components/profile/ProfileHeader.vue';
+import ProfileServiceInfo from '../components/profile/ProfileServiceInfo.vue';
 
-import {createRouter, createWebHistory} from "vue-router";
-import HomeComponent from "../public/pages/home.component.vue";
-import AboutComponent from "../public/pages/about.component.vue";
-import TutorialManagementComponent from "../learning/pages/tutorial-management.component.vue";
+const routes = [
+  {
+    path: '/profile/details',
+    name: 'ProfileDetails',
+    component: ProfileDetails,
+    meta: { title: 'Profile Details' }
+  },
+  {
+    path: '/profile/biography',
+    name: 'ProfileBiography',
+    component: ProfileBiography,
+    meta: { title: 'Profile Biography' }
+  },
+  {
+    path: '/profile/header',
+    name: 'ProfileHeader',
+    component: ProfileHeader,
+    meta: { title: 'Profile Header' }
+  },
+  {
+    path: '/profile/service-info',
+    name: 'ProfileServiceInfo',
+    component: ProfileServiceInfo,
+    meta: { title: 'Profile Service Info' }
+  }
+];
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes: [
-    { path: '/home',    component: HomeComponent, meta: { title: 'Home' } },
-    { path: '/tutorials', component: TutorialManagementComponent, meta: { title: 'Tutorials' } },
-    { path: '/about',   component: AboutComponent, meta: { title: 'About us' } },
-    { path: '/',        redirect: '/home' },
-  ],
+  history: createWebHistory(process.env.BASE_URL),
+  routes
 });
 
-/**
- * Set Business name as prefix for each page title
- */
 router.beforeEach((to, from, next) => {
-  let baseTitle = 'ACME Learning Center';
-  document.title = `${baseTitle} | ${to.meta['title']}`;
+  document.title = `SafeChild | ${to.meta.title}`;
   next();
 });
 
