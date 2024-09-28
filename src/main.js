@@ -8,14 +8,6 @@ import router from './router/index.js';
 // PrimeVue
 
 import PrimeVue from 'primevue/config';
-
-// PrimeVue CSS
-import 'primeflex/primeflex.css';
-
-// PrimeVue Icons
-import 'primeicons/primeicons.css';
-
-// PrimeVue Material Design Theme
 import 'primevue/resources/themes/mdc-light-indigo/theme.css';
 
 // PrimeVue Services
