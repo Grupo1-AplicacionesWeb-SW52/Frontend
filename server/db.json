@@ -170,5 +170,32 @@
         "saturday": "10:00 - 16:00"
       }
     }
+  ],
+  "reservations":[
+    {
+      "id": 1,
+      "caregiver": {
+        "name": "John Doe",
+        "photo": "/images/john.jpg",
+        "workLocation": "New York"
+      },
+      "date": "2024-09-25",
+      "totalTimeWork": "5h",
+      "totalFair": 100,
+      "status": "Pending"
+    },
+    {
+      "id": 2,
+      "caregiver": {
+        "name": "Jane Smith",
+        "photo": "/images/jane.jpg",
+        "workLocation": "Los Angeles"
+      },
+      "date": "2024-09-26",
+      "totalTimeWork": "3h",
+      "totalFair": 75,
+      "status": "Realized"
+    }
   ]
+  
 }
