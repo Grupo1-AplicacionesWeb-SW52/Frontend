@@ -2,4 +2,6 @@
   "/api/v1/*" : "/$1",
   "/shop/:type": "/shop?type=:type",
   "/shop/address/:address" :"/shop?address_like=:address"
+  "/api/profiles": "/profiles",
+  "/api/profiles/:id": "/profiles/:id"
 }
