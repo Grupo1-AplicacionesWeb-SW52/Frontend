@@ -2,26 +2,20 @@
   "reservations": [
     {
       "id": 1,
-      "caregiver": {
-        "name": "John Doe",
-        "photo": "/images/john.jpg",
-        "workLocation": "New York"
-      },
-      "date": "2024-09-25",
-      "totalTimeWork": "5h",
-      "totalFair": 100,
+      "caregiver": "John Doe",
+      "workLocation": "City Park",
+      "reservationDate": "2024-09-28",
+      "totalTimeWork": "4 hours",
+      "totalFare": "$40",
       "status": "Pending"
     },
     {
       "id": 2,
-      "caregiver": {
-        "name": "Jane Smith",
-        "photo": "/images/jane.jpg",
-        "workLocation": "Los Angeles"
-      },
-      "date": "2024-09-26",
-      "totalTimeWork": "3h",
-      "totalFair": 75,
+      "caregiver": "Jane Smith",
+      "workLocation": "Community Center",
+      "reservationDate": "2024-09-29",
+      "totalTimeWork": "3 hours",
+      "totalFare": "$30",
       "status": "Realized"
     }
   ]

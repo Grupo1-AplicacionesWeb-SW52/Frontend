@@ -1,54 +1,51 @@
 <template>
-  <div class="reservations-page">
-    <h1>Reservations</h1>
-    <div v-for="(reservation, index) in reservations" :key="index" class="reservation-card">
-      <div class="reservation-info">
-        <img :src="reservation.caregiver.photo" alt="Caregiver photo" />
+  <div>
+    <h2>Reservations</h2>
+    <div v-if="loading">Loading...</div>
+    <ul v-else>
+      <li v-for="reservation in reservations" :key="reservation.id">
         <div>
-          <h3>Caregiver: {{ reservation.caregiver.name }}</h3>
-          <p>Work location: {{ reservation.location }}</p>
-          <p>Reservation date: {{ reservation.date }}</p>
-          <p>Total timework: {{ reservation.timework }}</p>
-          <p>Total fair: S/ {{ reservation.fair }}</p>
+          <strong>Caregiver:</strong> {{ reservation.caregiver }}<br>
+          <strong>Work Location:</strong> {{ reservation.workLocation }}<br>
+          <strong>Reservation Date:</strong> {{ reservation.reservationDate }}<br>
+          <strong>Total Time Work:</strong> {{ reservation.totalTimeWork }}<br>
+          <strong>Total Fare:</strong> {{ reservation.totalFare }}<br>
+          <strong>Status:</strong> {{ reservation.status }}<br>
         </div>
-      </div>
-      <div class="reservation-status">
-        <p :class="reservation.status">{{ reservation.status }}</p>
-        <button v-if="reservation.status === 'Pending'" @click="updateReservation(reservation.id)">Update</button>
-        <button v-if="reservation.status === 'Pending'" @click="cancelReservation(reservation.id)">Cancel</button>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
+import ReservationService from '../services/Reservation.service.js';
+
 export default {
+  name: 'ReservationsPage',
   data() {
     return {
-      reservations: [
-        {
-          caregiver: { name: 'Julio Cesar', photo: 'path-to-image.jpg' },
-          location: 'San Isidro',
-          date: 'March 22th, 2024',
-          timework: 'From 9AM to 5PM (8 hours)',
-          fair: 40.00,
-          status: 'Pending'
-        },
-        // Agrega más datos aquí
-      ]
+      reservations: [],
+      loading: true,
     };
   },
+  mounted() {
+    this.fetchReservations();
+  },
   methods: {
-    updateReservation(id) {
-      // Lógica para actualizar la reserva
-    },
-    cancelReservation(id) {
-      // Lógica para cancelar la reserva
+    async fetchReservations() {
+      try {
+        const response = await ReservationService.getReservations();
+        this.reservations = response.data;
+      } catch (error) {
+        console.error('Error fetching reservations:', error);
+      } finally {
+        this.loading = false;
+      }
     }
   }
 };
 </script>
 
 <style>
-/* Aquí defines los estilos para hacer que las tarjetas se vean como la primera imagen */
+/* Agrega estilos si es necesario */
 </style>
