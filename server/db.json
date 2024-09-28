@@ -1,54 +1,219 @@
 {
-  "tutorials": [
+  "parents": [
     {
       "id": 1,
-      "title": "The Vue Tutorials",
-      "description": "The best tips and tutorials for Vue.",
-      "published": false
+      "name": "Juan Perez",
+      "email": "juan.perez@example.com",
+      "password": "password123",
+      "role": "parent",
+      "phone": "+51 987654321",
+      "address": "Av. Los Pinos 123, Lima, Peru",
+      "additional_info": {
+        "date_of_birth": "1980-05-15",
+        "gender": "male",
+        "education_level": "Master's in Education",
+        "bio": "Juan is the father of two children and has over 10 years of experience in education, specializing in mathematics for high school students.",
+        "profile_picture": "https://example.com/profile/juan_perez.jpg",
+        "children": [
+          {
+            "name": "Lucía Perez",
+            "age": 12,
+            "school": "Colegio Nacional Lima"
+          },
+          {
+            "name": "Martín Perez",
+            "age": 8,
+            "school": "Colegio Nacional Lima"
+          }
+        ]
+      },
+      "reservations": [
+        {
+          "reservation_id": 101,
+          "caregiver_id": 1,
+          "caregiver_name": "Maria Gomez",
+          "date": "2024-10-01",
+          "time": "08:00",
+          "duration_hours": 4,
+          "children": [
+            {
+              "name": "Lucía Perez",
+              "age": 12
+            },
+            {
+              "name": "Martín Perez",
+              "age": 8
+            }
+          ],
+          "status": "confirmed"
+        }
+      ]
     },
     {
       "id": 2,
-      "title": "Amazing Microsoft .NET",
-      "description": "Weekly tutorials about .NET and ASP.NET Core.",
-      "published": false
+      "name": "Ana Torres",
+      "email": "ana.torres@example.com",
+      "password": "AnaTorres123",
+      "role": "parent",
+      "phone": "+51 987654322",
+      "address": "Jr. Los Eucaliptos 456, Arequipa, Peru",
+      "additional_info": {
+        "date_of_birth": "1985-03-10",
+        "gender": "female",
+        "education_level": "Bachelor's in Psychology",
+        "bio": "Ana is a devoted mother of one and has experience in child psychology.",
+        "profile_picture": "https://example.com/profile/ana_torres.jpg",
+        "children": [
+          {
+            "name": "Sofia Torres",
+            "age": 10,
+            "school": "Colegio La Merced"
+          }
+        ]
+      }
+    }
+  ],
+  "caregivers": [
+    {
+      "id": 1,
+      "name": "Maria Gomez",
+      "email": "maria.gomez@example.com",
+      "password": "caregiver2024",
+      "profile_picture": "https://randomuser.me/api/portraits/med/women/45.jpg",
+      "role": "caregiver",
+      "rating":4,
+      "phone": "+51 912345678",
+      "location": "La Molina",
+      "address": "Calle Los Olivos 456, Lima, Peru",
+      "additional_info": {
+        "date_of_birth": "1990-07-20",
+        "gender": "female",
+        "experience": "5 years of experience taking care of children aged 2 to 10 years",
+        "bio": "Maria is a dedicated caregiver with skills in early childhood education and first aid."
+      },
+      "availability": {
+        "monday": "08:00 - 16:00",
+        "tuesday": "08:00 - 16:00",
+        "wednesday": "08:00 - 16:00",
+        "thursday": "08:00 - 16:00",
+        "friday": "08:00 - 16:00"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Pedro Diaz",
+      "email": "pedro.diaz@example.com",
+      "password": "PedroCaregiver",
+      "profile_picture":"https://randomuser.me/api/portraits/med/men/48.jpg",
+      "role": "caregiver",
+      "rating":4.7,
+      "phone": "+51 923456789",
+      "location": "San Borja",
+      "address": "Av. Libertad 789, Arequipa, Peru",
+      "additional_info": {
+        "date_of_birth": "1985-03-10",
+        "gender": "male",
+        "experience": "8 years of experience caring for children and teenagers",
+        "bio": "Pedro specializes in adolescent care and has training in child psychology."
+      },
+      "availability": {
+        "monday": "10:00 - 18:00",
+        "wednesday": "10:00 - 18:00",
+        "friday": "10:00 - 18:00",
+        "saturday": "09:00 - 14:00"
+      }
     },
     {
       "id": 3,
-      "title": "JavaScript for All",
-      "description": "Tips an tricks about JavaScript from scratch.",
-      "published": false
+      "name": "Elena Perez",
+      "email": "elena.perez@example.com",
+      "password": "ElenaCaregiver",
+      "profile_picture": "https://randomuser.me/api/portraits/med/women/47.jpg",
+      "role": "caregiver",
+      "rating":3,
+      "phone": "+51 934567890",
+      "location": "Miraflores",
+      "address": "Jr. Las Flores 321, Cusco, Peru",
+      "additional_info": {
+        "date_of_birth": "1995-11-05",
+        "gender": "female",
+        "experience": "3 years of experience caring for young children",
+        "bio": "Elena is a certified caregiver with knowledge in early stimulation."
+      },
+      "availability": {
+        "tuesday": "08:00 - 12:00",
+        "thursday": "14:00 - 18:00",
+        "saturday": "10:00 - 16:00"
+      }
     },
     {
       "id": 4,
-      "title": "Vue Unleashed",
-      "description": "Vue at its best.",
-      "published": false
-    }
-  ],
-  "shop": [
-    {
-      "id": 1,
-      "address": "Calle Juan Martín",
-      "type": "frutería",
-      "nombre": "Lola Castro Frutas",
-      "latitude": 37.880273,
-      "longitude": -4.792098
+      "name": "Lucia Hernandez",
+      "email": "lucia.hernandez@example.com",
+      "password": "LuciaCaregiver",
+      "profile_picture": "https://randomuser.me/api/portraits/med/women/48.jpg",
+      "role": "caregiver",
+      "rating":4,
+      "phone": "+51 945678321",
+      "location": "Surquillo",
+      "address": "Calle San Martín 654, Trujillo, Peru",
+      "additional_info": {
+        "date_of_birth": "1988-02-15",
+        "gender": "female",
+        "experience": "6 years of experience in childcare",
+        "bio": "Lucia has a warm approach to childcare, focusing on educational activities."
+      },
+      "availability": {
+        "monday": "09:00 - 17:00",
+        "wednesday": "09:00 - 17:00",
+        "friday": "09:00 - 17:00"
+      }
     },
     {
-      "id": 2,
-      "address": "Calle Pepe Cruz",
-      "type": "supermercado",
-      "nombre": "Ultramarinos Lolo Castro",
-      "latitude": 37.862323,
-      "longitude": -4.77812
+      "id": 5,
+      "name": "Roberto Sanchez",
+      "email": "roberto.sanchez@example.com",
+      "password": "RobertoCaregiver",
+      "profile_picture":"https://randomuser.me/api/portraits/med/men/49.jpg",
+      "role": "caregiver",
+      "rating":2,
+      "phone": "+51 956789432",
+      "location": "San Isidro",
+      "address": "Av. Perú 123, Piura, Peru",
+      "additional_info": {
+        "date_of_birth": "1990-06-20",
+        "gender": "male",
+        "experience": "4 years of experience caring for children",
+        "bio": "Roberto is great at engaging kids in outdoor activities and sports."     
+      },
+      "availability": {
+        "monday": "08:00 - 14:00",
+        "thursday": "08:00 - 14:00",
+        "friday": "08:00 - 14:00"
+      }
     },
     {
-      "id": 3,
-      "address": "Avenida de la Cruz",
-      "type": "pescadería",
-      "nombre": "Pescados El Boquerón",
-      "latitude": 37.856273,
-      "longitude": -4.776992
+      "id": 6,
+      "name": "Carmen Salas",
+      "email": "carmen.salas@example.com",
+      "profile_picture": "https://randomuser.me/api/portraits/med/women/49.jpg",
+      "password": "CarmenCaregiver",
+      "role": "caregiver",
+      "rating":5,
+      "phone": "+51 978654321",
+      "location": "La Molina",
+      "address": "Jr. Bolivia 987, Tacna, Peru",
+      "additional_info": {
+        "date_of_birth": "1993-12-01",
+        "gender": "female",
+        "experience": "2 years of experience in early childhood care",
+        "bio": "Carmen is an energetic caregiver with a focus on creative play."
+      },
+      "availability": {
+        "tuesday": "10:00 - 16:00",
+        "thursday": "10:00 - 16:00",
+        "saturday": "10:00 - 16:00"
+      }
     }
   ]
 }
