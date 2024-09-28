@@ -1,14 +1,15 @@
 <script>
 export default {
   name: 'app',
-  title: 'ACME Learning Center',
+  title: 'SafeChild',
   data() {
     return {
       drawer: false,
       items: [
-        { label: 'Home', to: '/home' },
-        { label: 'About', to: '/about' },
-        { label: 'Tutorials', to: '/tutorials' }
+        { label: 'Profile Details', to: '/profile/details' },
+        { label: 'Profile Biography', to: '/profile/biography' },
+        { label: 'Profile Header', to: '/profile/header' },
+        { label: 'Profile Service Info', to: '/profile/service-info' }
       ]
     };
   },
@@ -19,15 +20,16 @@ export default {
   }
 }
 </script>
+
 <template>
   <pv-toast></pv-toast>
   <header>
     <pv-toolbar class="bg-primary" fixed>
       <template #start>
         <pv-button class="p-button-text text-white" icon="pi pi-bars" @click="toggleDrawer" />
-        <h3>ACME Learning Center</h3>
+        <h3>SafeChild</h3>
         <div class="flex-column">
-          <router-link v-for="item in items" :key="item.label" v-slot="{ navigate, href}" :to="item.to" custom>
+          <router-link v-for="item in items" :key="item.label" v-slot="{ navigate, href }" :to="item.to" custom>
             <pv-button :href="href" class="p-button-text text-white" @click="navigate">{{ item.label }}</pv-button>
           </router-link>
         </div>
