@@ -1,31 +1,28 @@
-/**
- * Vue Router
- * @description: Vue Router configuration
- * @docs: https://router.vuejs.org/
- */
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import ChatList from '@/learning/pages/chat-list.vue';
+import ChatDetail from '@/learning/pages/chat-detail.vue';
+import { createRouter, createWebHistory } from "vue-router";
 
-import {createRouter, createWebHistory} from "vue-router";
-import HomeComponent from "../public/pages/home.component.vue";
-import AboutComponent from "../public/pages/about.component.vue";
-import TutorialManagementComponent from "../learning/pages/tutorial-management.component.vue";
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes: [
-    { path: '/home',    component: HomeComponent, meta: { title: 'Home' } },
-    { path: '/tutorials', component: TutorialManagementComponent, meta: { title: 'Tutorials' } },
-    { path: '/about',   component: AboutComponent, meta: { title: 'About us' } },
-    { path: '/',        redirect: '/home' },
-  ],
-});
+const routes =createRouter({
+    history: createWebHistory(),
+    routes: [
+        {path: '/chat', component: ChatList},
+        {path: '/', redirect: '/chat' },
+        {path: '/chat/:id', component: ChatDetail},
+    ],
+}) ;
 
-/**
- * Set Business name as prefix for each page title
- */
+
 router.beforeEach((to, from, next) => {
-  let baseTitle = 'ACME Learning Center';
-  document.title = `${baseTitle} | ${to.meta['title']}`;
-  next();
+    let baseTitle = 'CareNest';
+    document.title = `${baseTitle} | ${to.meta['title']}`;
+    next();
+})
+const router = new VueRouter({
+    routes,
+    mode: 'history',
 });
 
 export default router;
