@@ -2,7 +2,7 @@
 import SearchComponent from '../components/search.component.vue';
 
 export default {
-  name: 'SearchPage',
+  name: 'caregiver-search',
   components: {
     SearchComponent
   }

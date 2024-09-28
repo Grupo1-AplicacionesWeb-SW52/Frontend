@@ -31,7 +31,6 @@ export default {
         await userService.signUp(this.name, this.surname, this.email, this.document, this.phoneNumber, this.password);
         this.successMessage = 'User registered successfully!';
         this.errorMessage = '';
-        // Redirigir al SignIn después de un registro exitoso
         setTimeout(() => {
           router.push('/sign-in');
         }, 1500);

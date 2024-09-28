@@ -1,17 +1,9 @@
 <script>
-import InputText from 'primevue/inputtext';
-import Password from 'primevue/password';
-import Button from 'primevue/button';
 import router from "../../router/index.js";
 import {UserChildCareService} from "../services/user-child-care.service.js";
 
 export default {
   name: 'SignInChildCareComponent',
-  components: {
-    InputText,
-    Password,
-    Button
-  },
   data() {
     return {
       email: '',
@@ -25,7 +17,6 @@ export default {
       try {
         const user = await userService.signIn(this.email, this.password);
         console.log('User signed in:', user);
-        // Redirigir al home (implementa la redirección según tu lógica)
         await router.push('/home');
       } catch (error) {
         this.errorMessage = error.message || 'An error occurred during sign-in.';
@@ -40,7 +31,7 @@ export default {
     <form @submit.prevent="handleSignIn">
       <div class="form-group">
         <label for="email">Email:</label>
-        <InputText
+        <pv-input-text
             id="email"
             v-model="email"
             required
@@ -50,7 +41,7 @@ export default {
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <Password
+        <pv-password
             id="password"
             v-model="password"
             required
@@ -60,7 +51,7 @@ export default {
             class="p-password-sm"
         />
       </div>
-      <Button
+      <pv-button
           type="submit"
           label="Sign In"
           class="p-button-raised p-button-rounded p-button-primary"
@@ -126,7 +117,7 @@ button.p-button {
 }
 
 .link {
-  color: #4caf50; /* Cambia el color según el estilo que desees */
+  color: #4caf50; 
   text-decoration: none;
 }
 

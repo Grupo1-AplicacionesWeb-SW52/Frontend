@@ -1,19 +1,13 @@
 <script>
 import {UserFatherService} from "../services/user-father.service.js";
 //import { UserFather } from "../model/user-father.entity.js";
-import InputText from 'primevue/inputtext';
-import Password from 'primevue/password';
-import Button from 'primevue/button';
+
 import router from "../../router/index.js";
 
 
 export default {
   name: 'SignInFatherComponent',
-  components: {
-    InputText,
-    Password,
-    Button
-  },
+  
   data() {
     return {
       email: '',
@@ -27,6 +21,7 @@ export default {
       try {
         const user = await userService.signIn(this.email, this.password);
         console.log('User signed in:', user);
+        localStorage.setItem('isAuthenticated', 'true');
         // Redirigir al home (implementa la redirección según tu lógica)
         await router.push('/home');
       } catch (error) {
@@ -42,7 +37,7 @@ export default {
     <form @submit.prevent="handleSignIn">
       <div class="form-group">
         <label for="email">Email:</label>
-        <InputText
+        <pv-input-text
             id="email"
             v-model="email"
             required
@@ -52,17 +47,17 @@ export default {
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <Password
+        <pv-password
             id="password"
             v-model="password"
             required
             placeholder="Enter your password"
-            feedback="false"
+            :feedback="false"
             toggleMask
             class="p-password-sm"
         />
       </div>
-      <Button
+      <pv-button
           type="submit"
           label="Sign In"
           class="p-button-raised p-button-rounded p-button-primary"
