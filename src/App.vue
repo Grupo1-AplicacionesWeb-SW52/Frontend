@@ -21,7 +21,7 @@ export default {
 </script>
 <template>
   <pv-toast></pv-toast>
-  <header>
+  <!--<header>
     <pv-toolbar class="bg-primary" fixed>
       <template #start>
         <pv-button class="p-button-text text-white" icon="pi pi-bars" @click="toggleDrawer" />
@@ -34,6 +34,8 @@ export default {
       </template>
     </pv-toolbar>
   </header>
+-->
+
   <pv-sidebar v-model:visible="drawer"/>
   <router-view/>
 </template>
