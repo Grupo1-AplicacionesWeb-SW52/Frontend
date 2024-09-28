@@ -4,7 +4,7 @@ import App from './app.vue'
 
 
 // Import router
-import router from "./router/index.js";
+import router from './router/index.js';
 
 // PrimeVue
 
@@ -23,8 +23,8 @@ import 'primevue/resources/themes/mdc-light-indigo/theme.css';
 
 // PrimeVue Services
 import ToastService from 'primevue/toastservice';
-import ConfirmationService from "primevue/confirmationservice";
-import DialogService from "primevue/dialogservice";
+import ConfirmationService from 'primevue/confirmationservice';
+import DialogService from 'primevue/dialogservice';
 
 // PrimeVue Components
 import DataTable        from "primevue/datatable";
@@ -52,7 +52,7 @@ import Rating           from "primevue/rating";
 
 createApp(App)
     .use(router)
-    .use(PrimeVue,{ ripple: true })
+    .use(PrimeVue, { ripple: true })
     .use(DialogService)
     .use(ConfirmationService)
     .use(ToastService)
