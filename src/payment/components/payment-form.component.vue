@@ -30,24 +30,24 @@ export default {
     <form @submit.prevent="onSubmit" class="payment-form">
 
       <div class="form-group full-width">
-        <label for="cardHolderName">Cardholder Name* </label>
+        <label for="cardHolderName" class="label-highlight">Cardholder Name* </label>
         <input type="text" v-model="newCard.cardHolderName" id="cardHolderName" required />
       </div>
 
       <div class="form-group full-width">
-        <label for="cardNumber">Card Number* </label>
+        <label for="cardNumber" class="label-highlight">Card Number* </label>
         <input type="text" v-model="newCard.cardNumber" id="cardNumber" required />
       </div>
 
       <div class="form-row">
 
         <div class="form-group half-width">
-          <label for="expirationDate">Expiration Date* </label>
+          <label for="expirationDate" class="label-highlight">Expiration Date* </label>
           <input type="text" v-model="newCard.expirationDate" id="expirationDate" required />
         </div>
 
         <div class="form-group half-width">
-          <label for="cvv" style="display: block; margin-bottom: 5px;">CVV*</label>
+          <label for="cvv" class="label-highlight" style="display: block; margin-bottom: 5px;">CVV*</label>
           <input type="password" v-model="newCard.cvv" id="cvv" required />
         </div>
       </div>
@@ -57,8 +57,12 @@ export default {
   </div>
 </template>
 
-
 <style scoped>
+
+.label-highlight {
+  color: darkblue; /* Cambia este valor al color que desees */
+}
+
 .payment-form {
   display: flex;
   flex-direction: column;
