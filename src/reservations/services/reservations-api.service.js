@@ -1,17 +1,61 @@
-import http from '../../shared/services/http-common';
+import http from "../../shared/services/http-common.js";
 
-class ReservationsApiService {
+/**
+ * ReservationsApiService class
+ * @description Service class for making HTTP requests to the API
+ */
+export class ReservationsApiService {
+    /**
+     * Get all reservations
+     * @returns {Promise<AxiosResponse<any>>}
+     */
     getAll() {
         return http.get('/reservations');
     }
 
-    update(id, data) {
-        return http.put(`/reservations/${id}`, data);
+    /**
+     * Get reservation by id
+     * @param id
+     * @returns {Promise<AxiosResponse<any>>}
+     */
+    getById(id) {
+        return http.get(`/reservations/${id}`);
     }
 
-    cancel(id) {
+    /**
+     * Create a new reservation
+     * @param reservationResource - reservation object to create
+     * @returns {Promise<AxiosResponse<any>>}
+     */
+    create(reservationResource) {
+        return http.post('/reservations', reservationResource);
+    }
+
+    /**
+     * Update a reservation
+     * @param id - reservation id to update
+     * @param reservationResource - reservation object with data
+     * @returns {Promise<AxiosResponse<any>>}
+     */
+    update(id, reservationResource) {
+        return http.put(`/reservations/${id}`, reservationResource);
+    }
+
+    /**
+     * Delete a reservation
+     * @param id - reservation id to delete
+     * @returns {Promise<AxiosResponse<any>>}
+     */
+    delete(id) {
         return http.delete(`/reservations/${id}`);
     }
-}
 
-export default new ReservationsApiService();
+    /**
+     * Find reservations by status
+     * @param status - reservation status to apply as criteria
+     * @returns {Promise<AxiosResponse<any>>}
+     */
+    findByStatus(status) {
+        return http.get(`/reservations?status=${status}`);
+    }
+}
