@@ -1,8 +1,9 @@
 <script>
+import router from '../../router/index.js';
 import {UserFatherService} from "../services/user-father.service.js";
 //import { UserFather } from "../model/user-father.entity.js";
 
-import router from "../../router/index.js";
+
 
 
 export default {

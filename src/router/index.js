@@ -23,7 +23,6 @@ const router = createRouter({
 		{ path: '/sign-in-child', component: SignInChildCareComponent },
 		{ path: '/sign-up-child', component: SignUpChildCareComponent },
 		{ path: '/search', component: CaregiverSearch, meta: { title: 'Search' } },
-
 		{ path: '/', redirect: '/home' },
 	],
 });
@@ -36,3 +35,5 @@ router.beforeEach((to, from, next) => {
 	document.title = `${baseTitle} | ${to.meta['title']}`;
 	next();
 });
+
+export default router;

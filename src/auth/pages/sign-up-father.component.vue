@@ -1,8 +1,5 @@
 <script>
 import { UserFatherService } from '../services/user-father.service.js';
-import InputText from 'primevue/inputtext';
-import Password from 'primevue/password';
-import Button from 'primevue/button';
 import router from '../../router/index.js';
 
 export default {

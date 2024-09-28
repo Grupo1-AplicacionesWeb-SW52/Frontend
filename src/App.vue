@@ -8,8 +8,7 @@ export default {
       items: [
         { label: 'Home', to: '/home' },
         { label: 'About', to: '/about' },
-        { label: 'Search', to: '/search'},
-        { label: 'Chat Online', to:'/chat'}
+        { label: 'Search', to: '/search'}
       ]
     };
   },
@@ -41,3 +40,16 @@ export default {
   <pv-sidebar v-model:visible="drawer"/>
   <router-view/>
 </template>
+
+<style scoped>
+.bg-primary {
+  background-color: #013b58;  /* Asegúrate de que este sea el color azul que quieres */
+  color: white;
+}
+
+.sign-in-container {
+  background-color: #013b58;  /* Si esta clase controla la sección del inicio de sesión */
+  color: white;
+}
+
+</style>
