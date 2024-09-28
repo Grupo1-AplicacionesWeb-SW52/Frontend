@@ -7,10 +7,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeComponent from '../public/pages/home.component.vue';
 import AboutComponent from '../public/pages/about.component.vue';
-import SignUpFatherComponent from '../learning/pages/sign-up-father.component.vue';
-import SignInFatherComponent from '../learning/pages/sign-in-father.component.vue';
-import SignInChildCareComponent from '../learning/pages/sign-in-child-care.component.vue';
-import SignUpChildCareComponent from '../learning/pages/sign-up-child-care.component.vue';
+import SignUpFatherComponent from '../auth/pages/sign-up-father.component.vue';
+import SignInFatherComponent from '../auth/pages/sign-in-father.component.vue';
+import SignInChildCareComponent from '../auth/pages/sign-in-child-care.component.vue';
+import SignUpChildCareComponent from '../auth/pages/sign-up-child-care.component.vue';
 import CaregiverSearch from '../searches/pages/caregiver-search.vue';
 
 const router = createRouter({

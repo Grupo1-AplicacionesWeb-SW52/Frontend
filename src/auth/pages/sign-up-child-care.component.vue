@@ -1,17 +1,9 @@
 <script>
-import { UserFatherService } from '../services/user-father.service.js';
-import InputText from 'primevue/inputtext';
-import Password from 'primevue/password';
-import Button from 'primevue/button';
 import router from '../../router/index.js';
+import {UserChildCareService} from "../services/user-child-care.service.js";
 
 export default {
-  name: 'SignUpFatherComponent',
-  components: {
-    InputText,
-    Password,
-    Button,
-  },
+  name: 'SignUpChildCareComponent',
   data() {
     return {
       name: '',
@@ -26,12 +18,11 @@ export default {
   },
   methods: {
     async handleSignUp() {
-      const userService = new UserFatherService();
+      const userService = new UserChildCareService();
       try {
         await userService.signUp(this.name, this.surname, this.email, this.document, this.phoneNumber, this.password);
         this.successMessage = 'User registered successfully!';
         this.errorMessage = '';
-        // Redirigir al SignIn después de un registro exitoso
         setTimeout(() => {
           router.push('/sign-in');
         }, 1500);
@@ -50,29 +41,29 @@ export default {
     <form @submit.prevent="handleSignUp">
       <div class="form-group">
         <label for="name">Name:</label>
-        <InputText id="name" v-model="name" required placeholder="Enter your name" />
+        <pv-input-text id="name" v-model="name" required placeholder="Enter your name" />
       </div>
       <div class="form-group">
         <label for="surname">Surname:</label>
-        <InputText id="surname" v-model="surname" required placeholder="Enter your surname" />
+        <pv-input-text id="surname" v-model="surname" required placeholder="Enter your surname" />
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
-        <InputText type="email" id="email" v-model="email" required placeholder="Enter your email" />
+        <pv-input-text type="email" id="email" v-model="email" required placeholder="Enter your email" />
       </div>
       <div class="form-group">
         <label for="document">Document:</label>
-        <InputText id="document" v-model="document" required placeholder="Enter your document number" />
+        <pv-input-textt id="document" v-model="document" required placeholder="Enter your document number" />
       </div>
       <div class="form-group">
         <label for="phoneNumber">Phone Number:</label>
-        <InputText id="phoneNumber" v-model="phoneNumber" required placeholder="Enter your phone number" />
+        <pv-input-text id="phoneNumber" v-model="phoneNumber" required placeholder="Enter your phone number" />
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <Password id="password" v-model="password" required placeholder="Enter your password" toggleMask />
+        <pv-password id="password" v-model="password" required placeholder="Enter your password" toggleMask />
       </div>
-      <Button type="submit" label="Sign Up" class="p-button-raised p-button-rounded" />
+      <pv-button type="submit" label="Sign Up" class="p-button-raised p-button-rounded" />
     </form>
     <p-message v-if="errorMessage" severity="error" :content="errorMessage"></p-message>
     <p-message v-if="successMessage" severity="success" :content="successMessage"></p-message>
