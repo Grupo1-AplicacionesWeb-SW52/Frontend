@@ -7,16 +7,17 @@ import http from "../../shared/services/http-common.js";
 export class ReservationsApiService {
     /**
      * Get all reservations
-     * @returns {Promise<AxiosResponse<any>>}
+     * @returns {Axios.IPromise<Axios.AxiosXHR<unknown>>}
      */
     getAll() {
         return http.get('/reservations');
     }
 
+
     /**
      * Get reservation by id
      * @param id
-     * @returns {Promise<AxiosResponse<any>>}
+     * @returns {Axios.IPromise<Axios.AxiosXHR<unknown>>}
      */
     getById(id) {
         return http.get(`/reservations/${id}`);
@@ -25,7 +26,7 @@ export class ReservationsApiService {
     /**
      * Create a new reservation
      * @param reservationResource - reservation object to create
-     * @returns {Promise<AxiosResponse<any>>}
+     * @returns {Axios.IPromise<Axios.AxiosXHR<unknown>>}
      */
     create(reservationResource) {
         return http.post('/reservations', reservationResource);
@@ -35,7 +36,7 @@ export class ReservationsApiService {
      * Update a reservation
      * @param id - reservation id to update
      * @param reservationResource - reservation object with data
-     * @returns {Promise<AxiosResponse<any>>}
+     * @returns {Axios.IPromise<Axios.AxiosXHR<unknown>>}
      */
     update(id, reservationResource) {
         return http.put(`/reservations/${id}`, reservationResource);
@@ -44,7 +45,7 @@ export class ReservationsApiService {
     /**
      * Delete a reservation
      * @param id - reservation id to delete
-     * @returns {Promise<AxiosResponse<any>>}
+     * @returns {Axios.IPromise<Axios.AxiosXHR<unknown>>}
      */
     delete(id) {
         return http.delete(`/reservations/${id}`);
@@ -53,7 +54,7 @@ export class ReservationsApiService {
     /**
      * Find reservations by status
      * @param status - reservation status to apply as criteria
-     * @returns {Promise<AxiosResponse<any>>}
+     * @returns {Axios.IPromise<Axios.AxiosXHR<unknown>>}
      */
     findByStatus(status) {
         return http.get(`/reservations?status=${status}`);
