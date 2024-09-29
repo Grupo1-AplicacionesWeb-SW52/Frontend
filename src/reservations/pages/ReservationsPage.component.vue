@@ -1,51 +1,38 @@
 <template>
   <div>
-    <h2>Reservations</h2>
-    <div v-if="loading">Loading...</div>
-    <ul v-else>
-      <li v-for="reservation in reservations" :key="reservation.id">
-        <div>
-          <strong>Caregiver:</strong> {{ reservation.caregiver }}<br>
-          <strong>Work Location:</strong> {{ reservation.workLocation }}<br>
-          <strong>Reservation Date:</strong> {{ reservation.reservationDate }}<br>
-          <strong>Total Time Work:</strong> {{ reservation.totalTimeWork }}<br>
-          <strong>Total Fare:</strong> {{ reservation.totalFare }}<br>
-          <strong>Status:</strong> {{ reservation.status }}<br>
-        </div>
-      </li>
-    </ul>
+    <h1>Reservations</h1>
+    <ReservationList :reservations="reservations" />
   </div>
 </template>
 
 <script>
-import ReservationService from '../services/Reservation.service.js';
+import { ReservationsApiService } from '../services/reservations-api.service';
+import ReservationList from '../components/ReservationsList.component.vue';
 
 export default {
   name: 'ReservationsPage',
+  components: {
+    ReservationList
+  },
   data() {
     return {
-      reservations: [],
-      loading: true,
+      reservations: []
     };
   },
-  mounted() {
+  created() {
     this.fetchReservations();
   },
   methods: {
-    async fetchReservations() {
-      try {
-        const response = await ReservationService.getReservations();
-        this.reservations = response.data;
-      } catch (error) {
-        console.error('Error fetching reservations:', error);
-      } finally {
-        this.loading = false;
-      }
+    fetchReservations() {
+      const apiService = new ReservationsApiService();
+      apiService.getAll()
+          .then(response => {
+            this.reservations = response.data;
+          })
+          .catch(error => {
+            console.error("Error fetching reservations:", error);
+          });
     }
   }
 };
 </script>
-
-<style>
-/* Agrega estilos si es necesario */
-</style>
