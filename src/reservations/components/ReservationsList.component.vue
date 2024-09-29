@@ -1,12 +1,11 @@
 <template>
-  <div class="reservation-list">
-    <ReservationCard
-        v-for="reservation in reservations"
-        :key="reservation.id"
-        :reservation="reservation"
-    />
+  <div>
+    <div v-for="reservation in reservations" :key="reservation.id">
+      <ReservationCard :reservation="reservation" />
+    </div>
   </div>
 </template>
+
 
 <script>
 import ReservationCard from './ReservationCard.component.vue';
@@ -24,11 +23,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.reservation-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-</style>

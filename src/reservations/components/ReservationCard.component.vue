@@ -13,7 +13,7 @@ export default {
   props: {
     reservation: {
       type: Object,
-      required: true
+      required: true // Esto significa que la prop es obligatoria
     }
   }
 };

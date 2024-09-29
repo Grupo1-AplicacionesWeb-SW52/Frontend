@@ -10,9 +10,16 @@ export class ReservationsApiService {
      * @returns {Axios.IPromise<Axios.AxiosXHR<unknown>>}
      */
     getAll() {
-        return http.get('/reservations');
+        return http.get('/reservations')
+            .then(response => {
+                console.log('API Response:', response.data);  // Verifica si los datos están siendo recibidos correctamente
+                return response.data;  // Retorna solo los datos de la respuesta
+            })
+            .catch(error => {
+                console.error('Error fetching reservations:', error);
+                throw error;
+            });
     }
-
 
     /**
      * Get reservation by id
@@ -58,5 +65,14 @@ export class ReservationsApiService {
      */
     findByStatus(status) {
         return http.get(`/reservations?status=${status}`);
+    }
+    async fetchReservations() {
+        const apiService = new ReservationsApiService();
+        try {
+            this.reservations = await apiService.getAll();
+            console.log("Reservations fetched:", this.reservations);
+        } catch (error) {
+            console.error("Error fetching reservations:", error);
+        }
     }
 }
