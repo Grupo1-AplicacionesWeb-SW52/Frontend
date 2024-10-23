@@ -58,9 +58,9 @@ export default {
 <style scoped>
 .payment-methods-container {
   padding: 20px;
-  border-radius: 8px; /* Borde redondeado */
-  background-color: #f9f9f9; /* Fondo claro */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra */
+  border-radius: 8px; 
+  background-color: #f9f9f9; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
 }
 
 .payment-methods-container h1 {

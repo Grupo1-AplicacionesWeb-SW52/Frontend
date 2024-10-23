@@ -30,7 +30,6 @@ export default {
   <div id="app">
     <pv-toast />
 
-    <!-- Header -->
     <header>
       <pv-toolbar class="bg-primary" fixed>
         <template #start>
@@ -40,7 +39,6 @@ export default {
       </pv-toolbar>
     </header>
 
-    <!-- Sidebar (Drawer) -->
     <pv-sidebar v-model:visible="drawer" class="p-sidebar-sm">
       <div class="sidebar-content">
         <ul>
@@ -51,7 +49,6 @@ export default {
       </div>
     </pv-sidebar>
 
-    <!-- Main Content -->
     <div class="main-content">
       <router-view />
     </div>
@@ -59,12 +56,12 @@ export default {
 </template>
 <style scoped>
 .bg-primary {
-  background-color: #013b58;  /* Asegúrate de que este sea el color azul que quieres */
+  background-color: #013b58; 
   color: white;
 }
 
 .sign-in-container {
-  background-color: #013b58;  /* Si esta clase controla la sección del inicio de sesión */
+  background-color: #013b58;  
   color: white;
 }
 

@@ -8,6 +8,6 @@ export default {
 <template>
   <div class="w-full align-content-center">
     <h1>Home</h1>
-    <p>Welcome to ACME Learning Center.</p>
+    <p>Welcome to CareNest</p>
   </div>
 </template>

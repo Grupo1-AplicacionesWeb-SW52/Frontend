@@ -35,15 +35,12 @@ export default {
   },
   methods: {
     updateReservation(id) {
-      // Lógica para actualizar la reserva
     },
     cancelReservation(id) {
-      // Lógica para cancelar la reserva
     }
   }
 };
 </script>
 
 <style scoped>
-/* Aquí van los estilos para la tarjeta */
 </style>

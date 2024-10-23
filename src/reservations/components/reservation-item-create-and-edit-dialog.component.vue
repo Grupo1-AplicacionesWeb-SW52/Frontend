@@ -36,14 +36,13 @@ export default {
 
 <template>
   <pv-dialog v-bind:visible="visible" :modal="true" :header="getHeaderTitle()" class="p-fluid" :style="{width: '600px'}">
-    <!-- Header -->
+
     <template #header>
       <div class="flex justify-content-start">
         <div>{{ getHeaderTitle() }}</div>
       </div>
     </template>
 
-    <!-- Content -->
     <slot name="content">
       <div class="field">
         <label for="caregiver">Caregiver</label>
@@ -76,7 +75,6 @@ export default {
       </div>
     </slot>
 
-    <!-- Footer -->
     <template #footer>
       <div class="flex justify-content-end">
         <pv-button type="button" :label="getSubmitLabel()" class="p-button-text" icon="pi pi-check" @click="onSave" />
