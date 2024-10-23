@@ -16,28 +16,27 @@ export default {
 
 <style scoped>
 .sidebar {
-  width: 200px; 
-  background-color: #f8f9fa; 
-  padding: 15px; 
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
+  width: 200px; /* Ajusta el ancho del sidebar */
+  background-color: #f8f9fa; /* Color de fondo */
+  padding: 15px; /* Espaciado interno */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
 .sidebar ul {
-  list-style-type: none; 
-  padding: 0; 
+  list-style-type: none; /* Sin viñetas */
+  padding: 0; /* Sin padding */
 }
 
 .sidebar li {
-  margin: 10px 0; 
+  margin: 10px 0; /* Espaciado entre elementos */
 }
 
 .sidebar a {
-  text-decoration: none; 
-  color: #333; 
+  text-decoration: none; /* Sin subrayado */
+  color: #333; /* Color del texto */
 }
 
-
 .sidebar a:hover {
-  color: #007bff;
+  color: #007bff; /* Color al pasar el mouse */
 }
 </style>
