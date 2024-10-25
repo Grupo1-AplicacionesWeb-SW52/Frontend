@@ -1,36 +1,59 @@
 <template>
   <div>
     <h1>Reservations</h1>
-    <!-- Aquí pasamos las reservas como propiedad al componente de lista -->
     <ReservationList :reservations="reservations" />
   </div>
 </template>
 
 <script>
-import {ReservationsApiService}from '../services/reservations-api.service.js';
-import ReservationList from '../components/ReservationsList.component.vue';  // Este componente importa la lista de tarjetas
+import { ReservationsApiService } from '../services/reservations-api.service.js';
+import ReservationList from '../components/ReservationsList.component.vue';
 
 export default {
-  name: 'ReservationPage',  // Ajusta el nombre del componente aquí
+  name: 'ReservationPage',
   components: {
-    ReservationList  // Importa el componente que maneja la lista de reservas
+    ReservationList
   },
   data() {
     return {
-      reservations: []  // Inicializa la lista de reservas como un array vacío
+      reservations: [],
+      caregivers: []
     };
   },
   async mounted() {
-    await this.fetchReservations();  // Llama a la función para cargar las reservas al montar el componente
+    await this.fetchData();
   },
   methods: {
-    async fetchReservations() {
+    async fetchData() {
       const apiService = new ReservationsApiService();
       try {
-        this.reservations = await apiService.getAll();  // Asigna las reservas al array local
-        console.log(this.reservations);  // Verifica si las reservas están siendo recibidas correctamente
+        const [reservationsResponse, caregiversResponse] = await Promise.all([
+          apiService.getAll(),  // Obtener las reservas
+          apiService.getCaregivers()  // Obtener los cuidadores
+        ]);
+
+        // Verifica los logs para asegurar que los datos estén en la estructura correcta
+        console.log('Reservations Response:', reservationsResponse);
+        console.log('Caregivers Response:', caregiversResponse);
+
+        // Asegúrate de que ambas respuestas tengan datos antes de proceder
+        if (reservationsResponse && caregiversResponse && caregiversResponse.data) {
+          // Combinar los datos de las reservas con el nombre y la imagen del cuidador correspondiente
+          this.reservations = reservationsResponse.map(reservation => {
+            const caregiver = caregiversResponse.data.find(c => c.id === reservation.caregiverId);
+            return {
+              ...reservation,
+              caregiverName: caregiver ? caregiver.fullName : 'Unknown',
+              profileImg: caregiver ? caregiver.profileImg : '' // Agrega el profileImg aquí
+            };
+          });
+
+          console.log('Reservations with caregiver names and images:', this.reservations);
+        } else {
+          console.error('No data found in one of the responses.');
+        }
       } catch (error) {
-        console.error("Error fetching reservations:", error);  // Muestra los errores en caso de fallo
+        console.error("Error fetching data:", error);
       }
     }
   }
