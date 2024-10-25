@@ -21,6 +21,11 @@ export class ReservationsApiService {
             });
     }
 
+    getCaregivers() {
+        return http.get('/caregivers');
+    }
+
+
     /**
      * Get reservation by id
      * @param id
