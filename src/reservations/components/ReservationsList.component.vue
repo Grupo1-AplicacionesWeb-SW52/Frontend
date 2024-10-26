@@ -1,3 +1,4 @@
+<!--
 <template>
   <div>
     <div v-for="reservation in reservations" :key="reservation.id">
