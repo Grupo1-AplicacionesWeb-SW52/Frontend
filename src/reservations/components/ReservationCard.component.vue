@@ -40,29 +40,33 @@ export default {
 <style scoped>
 .reservation-card {
   display: flex;
+  align-items: center;
   background-color: white;
   border: 1px solid #ccc;
   padding: 16px;
   margin-bottom: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative; /* Para posicionar el status */
+  position: relative;
 }
 
 .image-container {
-  margin-right: 16px; /* Espacio entre la imagen y los detalles */
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
 }
 
 .caregiver-image {
-  width: 80px; /* Ajusta el tamaño según lo necesites */
-  height: auto;
-  border-radius: 4px; /* Bordes redondeados para la imagen */
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .reservation-status {
   position: absolute;
   top: 10px;
-  right: 20px; /* Ajusta el espacio a la derecha */
+  right: 20px;
 }
 
 .pending-status {
@@ -79,6 +83,6 @@ export default {
 }
 
 .details {
-  flex-grow: 1; /* Hace que el contenedor de detalles ocupe el espacio restante */
+  flex-grow: 1;
 }
 </style>
