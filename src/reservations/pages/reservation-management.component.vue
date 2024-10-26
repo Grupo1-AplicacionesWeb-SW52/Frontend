@@ -42,7 +42,7 @@
 <script>
 import DataManager from "../../shared/components/data-manager.component.vue";
 import ReservationItemCreateAndEditDialog from "../components/reservation-item-create-and-edit-dialog.component.vue";
-import SidebarComponent from "../../shared/components/sidebar.component.vue";
+import SidebarComponent from "../../shared/components/Sidebar.component.vue";
 import { Reservation } from "../model/reservation.entity.js";
 import { ReservationsApiService } from "../services/reservations-api.service.js";
 
