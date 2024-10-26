@@ -1,23 +1,32 @@
 <template>
   <div>
     <h1>Reservations</h1>
-    <ReservationList :reservations="reservations" />
+    <DataTable :value="reservationsWithCaregiver" tableStyle="min-width: 50rem">
+      <Column field="id" header="N°"></Column>
+      <Column field="caregiverName" header="Caregiver"></Column>
+      <Column field="createdAt" header="Created at"></Column>
+      <Column header="Schedule" :body="formatSchedule"></Column>
+      <Column field="totalFare" header="Total fare"></Column>
+      <Column field="status" header="Status"></Column>
+      <Column header="Actions" :body="renderActions"></Column>
+    </DataTable>
   </div>
 </template>
 
 <script>
 import { ReservationsApiService } from '../services/reservations-api.service.js';
-import ReservationList from '../components/ReservationsList.component.vue';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
 
 export default {
-  name: 'ReservationPage',
+  name: 'ReservationsPage',
   components: {
-    ReservationList
+    DataTable,
+    Column,
   },
   data() {
     return {
-      reservations: [],
-      caregivers: []
+      reservationsWithCaregiver: []
     };
   },
   async mounted() {
@@ -28,34 +37,43 @@ export default {
       const apiService = new ReservationsApiService();
       try {
         const [reservationsResponse, caregiversResponse] = await Promise.all([
-          apiService.getAll(),  // Obtener las reservas
-          apiService.getCaregivers()  // Obtener los cuidadores
+          apiService.getAll(),
+          apiService.getAllCaregivers()
         ]);
 
-        // Verifica los logs para asegurar que los datos estén en la estructura correcta
-        console.log('Reservations Response:', reservationsResponse);
-        console.log('Caregivers Response:', caregiversResponse);
+        const reservations = reservationsResponse || [];
+        const caregivers = caregiversResponse || [];
 
-        // Asegúrate de que ambas respuestas tengan datos antes de proceder
-        if (reservationsResponse && caregiversResponse && caregiversResponse.data) {
-          // Combinar los datos de las reservas con el nombre y la imagen del cuidador correspondiente
-          this.reservations = reservationsResponse.map(reservation => {
-            const caregiver = caregiversResponse.data.find(c => c.id === reservation.caregiverId);
-            return {
-              ...reservation,
-              caregiverName: caregiver ? caregiver.fullName : 'Unknown',
-              profileImg: caregiver ? caregiver.profileImg : '' // Agrega el profileImg aquí
-            };
-          });
-
-          console.log('Reservations with caregiver names and images:', this.reservations);
-        } else {
-          console.error('No data found in one of the responses.');
-        }
+        // Mapea las reservas e incluye el campo `schedule`
+        this.reservationsWithCaregiver = reservations.map(reservation => {
+          const caregiver = caregivers.find(c => c.id === reservation.caregiverId);
+          return {
+            ...reservation,
+            caregiverName: caregiver ? caregiver.fullName : 'Unknown',
+            createdAt: new Date(reservation.createdAt).toLocaleDateString(),
+            totalFare: `$${reservation.totalFare.toFixed(2)}`,
+            schedule: reservation.schedule // Asegura que `schedule` esté presente
+          };
+        });
       } catch (error) {
         console.error("Error fetching data:", error);
       }
-    }
-  }
+    },
+    formatSchedule(reservation) {
+      // Accede a `schedule.date` si está definido, de lo contrario, muestra un valor por defecto
+      if (reservation.schedule && reservation.schedule.date) {
+        const date = new Date(reservation.schedule.date);
+        return date.toLocaleDateString();
+      }
+      return "No schedule";
+    },
+    renderActions() {
+      return '<button>Action</button>';
+    },
+  },
 };
 </script>
+
+<style scoped>
+
+</style>
