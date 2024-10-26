@@ -1,3 +1,4 @@
+<!-- No se está usando -->
 <template>
   <div class="main-layout">
     <SidebarComponent />
