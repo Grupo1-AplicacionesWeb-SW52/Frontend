@@ -23,7 +23,6 @@ export default {
         const user = await userService.signIn(this.email, this.password);
         console.log('User signed in:', user);
         localStorage.setItem('isAuthenticated', 'true');
-        // Redirigir al home (implementa la redirección según tu lógica)
         await router.push('/home');
       } catch (error) {
         this.errorMessage = error.message || 'An error occurred during sign-in.';

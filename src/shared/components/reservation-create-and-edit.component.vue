@@ -33,7 +33,7 @@ export default {
 </script>
 
 <template>
-  <!-- Create / Update Dialog for Reservations -->
+  
   <pv-dialog v-bind:visible="visible" :modal="true" :style="getDialogStyle()" class="p-fluid" :header="getHeaderTitle()">
     <template #header>
       <div class="flex justify-content-start">
@@ -41,7 +41,6 @@ export default {
       </div>
     </template>
 
-    <!-- Form content for reservation -->
     <slot name="content"></slot>
 
     <template #footer>
