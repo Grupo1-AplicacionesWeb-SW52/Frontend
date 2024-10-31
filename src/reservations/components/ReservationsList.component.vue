@@ -1,41 +1,25 @@
 <template>
-  <div class="reservations-list">
-    <h1>Reservations</h1>
+  <div>
     <div v-for="reservation in reservations" :key="reservation.id">
-      <ReservationCard :caregiver="reservation.caregiver" :reservation="reservation" />
+      <ReservationCard :reservation="reservation" />
     </div>
   </div>
 </template>
 
+
 <script>
 import ReservationCard from './ReservationCard.component.vue';
-import reservationsApi from '../../reservations/services/reservations-api.service.js';
 
 export default {
+  name: 'ReservationList',
   components: {
     ReservationCard
   },
-  data() {
-    return {
-      reservations: []
-    };
-  },
-  mounted() {
-    this.fetchReservations();
-  },
-  methods: {
-    async fetchReservations() {
-      try {
-        const response = await reservationsApi.getAll();
-        this.reservations = response.data;
-      } catch (error) {
-        console.error('Error fetching reservations', error);
-      }
+  props: {
+    reservations: {
+      type: Array,
+      required: true
     }
   }
 };
 </script>
-
-<style scoped>
-/* Estilos para la lista de reservas */
-</style>

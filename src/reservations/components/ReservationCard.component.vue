@@ -1,46 +1,31 @@
 <template>
   <div class="reservation-card">
-    <img :src="caregiver.photo" alt="Caregiver photo" class="caregiver-photo">
-    <div class="reservation-info">
-      <h3>{{ caregiver.name }}</h3>
-      <p><strong>Location:</strong> {{ caregiver.workLocation }}</p>
-      <p><strong>Date:</strong> {{ reservation.date }}</p>
-      <p><strong>Total Time:</strong> {{ reservation.totalTimeWork }}</p>
-      <p><strong>Total Fair:</strong> ${{ reservation.totalFair }}</p>
-    </div>
-    <div class="reservation-status">
-      <span :class="statusClass">{{ reservation.status }}</span>
-      <div v-if="reservation.status === 'Pending'">
-        <button @click="updateReservation(reservation.id)">Update</button>
-        <button @click="cancelReservation(reservation.id)">Cancel</button>
-      </div>
-    </div>
+    <h3>{{ reservation.caregiver }}</h3>
+    <p><strong>Reservation Date:</strong> {{ reservation.reservationDate }}</p>
+    <p><strong>Total Time:</strong> {{ reservation.totalTimeWork }}</p>
+    <p><strong>Status:</strong> {{ reservation.status }}</p>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'ReservationCard',
   props: {
-    caregiver: Object,
-    reservation: Object
-  },
-  computed: {
-    statusClass() {
-      return {
-        'status-realized': this.reservation.status === 'Realized',
-        'status-cancelled': this.reservation.status === 'Cancelled',
-        'status-pending': this.reservation.status === 'Pending',
-      };
-    }
-  },
-  methods: {
-    updateReservation(id) {
-    },
-    cancelReservation(id) {
+    reservation: {
+      type: Object,
+      required: true // Esto significa que la prop es obligatoria
     }
   }
 };
 </script>
 
 <style scoped>
+.reservation-card {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 </style>
