@@ -1,3 +1,63 @@
+<template>
+  <div class="payment-form-container">
+    <h2>Add New Card</h2>
+
+    <form @submit.prevent="onSubmit" class="payment-form">
+      <!-- Campo para el nombre del titular de la tarjeta -->
+      <div class="form-group full-width">
+        <label for="cardHolderName" class="label-highlight">Cardholder Name*</label>
+        <input
+          type="text"
+          v-model="newCard.cardHolderName"
+          id="cardHolderName"
+          required
+          class="input-field"
+        />
+      </div>
+
+      <!-- Campo para el número de la tarjeta -->
+      <div class="form-group full-width">
+        <label for="cardNumber" class="label-highlight">Card Number*</label>
+        <input
+          type="text"
+          v-model="newCard.cardNumber"
+          id="cardNumber"
+          required
+          class="input-field"
+        />
+      </div>
+
+      <!-- Fila para fecha de expiración y CVV -->
+      <div class="form-row">
+        <div class="form-group half-width">
+          <label for="expirationDate" class="label-highlight">Expiration Date*</label>
+          <input
+            type="text"
+            v-model="newCard.expirationDate"
+            id="expirationDate"
+            required
+            class="input-field"
+          />
+        </div>
+
+        <div class="form-group half-width">
+          <label for="cvv" class="label-highlight" style="display: block; margin-bottom: 5px;">CVV*</label>
+          <input
+            type="password"
+            v-model="newCard.cvv"
+            id="cvv"
+            required
+            class="input-field"
+          />
+        </div>
+      </div>
+
+      <!-- Botón de envío -->
+      <button type="submit" class="submit-button">Submit Payment</button>
+    </form>
+  </div>
+</template>
+
 <script>
 export default {
   name: 'PaymentFormComponent',
@@ -7,8 +67,8 @@ export default {
         cardHolderName: '',
         cardNumber: '',
         expirationDate: '',
-        cvv: ''
-      }
+        cvv: '',
+      },
     };
   },
   methods: {
@@ -17,48 +77,12 @@ export default {
         this.$emit('addCard', { ...this.newCard });
         this.newCard = { cardHolderName: '', cardNumber: '', expirationDate: '', cvv: '' }; // Resetea el formulario
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
-
-<template>
-  <div class="payment-form-container">
-    <h2>Add New Card</h2>
-
-    <form @submit.prevent="onSubmit" class="payment-form">
-
-      <div class="form-group full-width">
-        <label for="cardHolderName" class="label-highlight">Cardholder Name* </label>
-        <input type="text" v-model="newCard.cardHolderName" id="cardHolderName" required />
-      </div>
-
-      <div class="form-group full-width">
-        <label for="cardNumber" class="label-highlight">Card Number* </label>
-        <input type="text" v-model="newCard.cardNumber" id="cardNumber" required />
-      </div>
-
-      <div class="form-row">
-
-        <div class="form-group half-width">
-          <label for="expirationDate" class="label-highlight">Expiration Date* </label>
-          <input type="text" v-model="newCard.expirationDate" id="expirationDate" required />
-        </div>
-
-        <div class="form-group half-width">
-          <label for="cvv" class="label-highlight" style="display: block; margin-bottom: 5px;">CVV*</label>
-          <input type="password" v-model="newCard.cvv" id="cvv" required />
-        </div>
-      </div>
-
-      <button type="submit" class="submit-button">Submit Payment</button>
-    </form>
-  </div>
-</template>
-
 <style scoped>
-
 .label-highlight {
   color: darkblue; /* Cambia este valor al color que desees */
 }
@@ -75,7 +99,9 @@ export default {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.full-width {
+.full-width,
+.half-width,
+.input-field {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -93,12 +119,6 @@ export default {
 
 .half-width {
   flex: 1;
-  padding: 12px;
-  border: 1px solid #ccc;
-  background-color: #e3e6f0;
-  border-radius: 8px;
-  font-size: 16px;
-  color: #333;
 }
 
 .submit-button {
