@@ -75,3 +75,39 @@ export default {
   }
 };
 </script>
+<style scoped>
+.menu-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-block: 24px;
+}
+
+.nav-menu-item {
+  width: 100%;
+  padding: 12px 24px;
+}
+
+.nav-menu-item__link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav-menu-item__link.active {
+  background: #003547;
+}
+</style>

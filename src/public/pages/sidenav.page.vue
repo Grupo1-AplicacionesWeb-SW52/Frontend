@@ -1,14 +1,13 @@
 <template>
   <div class="layout">
-    <!-- Sidebar que contiene el menú -->
+
     <div class="sidenav">
       <MenuComponent />
     </div>
 
-    <!-- Contenido principal de la aplicación -->
     <div class="wrapper-content">
       <main class="content">
-        <router-view /> <!-- Aquí se renderizan las rutas -->
+        <router-view />
       </main>
     </div>
   </div>
@@ -16,7 +15,6 @@
 
 <script>
 import MenuComponent from '../components/menu.component.vue';
- // Importamos el componente Menu
 
 export default {
   components: {
@@ -24,26 +22,38 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .layout {
   display: flex;
-  height: 100vh;
+  width: 100%;
+  height: 100vh; /* Ajustado para Vue */
 }
 
 .sidenav {
-  width: 250px;
-  background-color: #f4f4f4;
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 320px;
+  height: 100%;
+  background: linear-gradient(
+    172.88deg,
+    #156683 -11.67%,
+    #25618b 47.61%,
+    #156683 106.89%
+  );
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15),
+    0px 1px 3px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border-radius: 0;
 }
 
 .wrapper-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 }
 
 .content {
-  padding: 20px;
+  width: 100%;
+  padding: 24px 40px;
+  overflow-y: auto;
 }
 </style>
