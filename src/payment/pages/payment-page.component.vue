@@ -1,46 +1,55 @@
 <template>
   <div class="payment-methods-container">
-    <h1 class="title">Your payment methods</h1>
-    <p class="description">
-      In this section, you manage your payment wallet by registering your cards and setting up preferred payment methods for a seamless checkout experience.
+    <h1>Your payment methods</h1>
+    <p>
+      In this section, you manage your payment wallet by registering your cards
+      and setting up preferred payment methods for a seamless checkout experience.
     </p>
 
     <!-- Botones de Acción -->
     <div class="action-buttons">
       <pv-button
-        label="Add a new card"
-        class="btn btn--add-card"
+        label="Add a card"
         icon="pi pi-plus"
-        @click="addEditCard"
+        class="btn btn--add-card"
+        @click="openAddEditDialog"
       />
       <pv-button
         label="History"
-        class="btn btn--history"
         icon="pi pi-history"
-        @click="$router.push('/history')"
+        class="btn btn--history"
+        @click="goToHistory"
       />
     </div>
 
     <!-- Lista de Tarjetas -->
     <div class="card-list">
-      <div
-        class="card-container"
+      <PaymentCard
         v-for="card in cards"
         :key="card.id"
-      >
-        <PaymentCard
-          :card="card"
-          @delete="removeCard"
-          @edit="addEditCard"
-        />
-      </div>
+        :card="card"
+        @delete="confirmRemoveCard(card)"
+        @edit="openAddEditDialog(card)"
+      />
     </div>
+
+    <!-- Diálogo para Añadir/Editar Tarjeta -->
+    <CreateEditPaymentDialog
+      v-if="isAddEditDialogOpen"
+      :data="selectedCard"
+      @close="handleAddEditDialogClose"
+    />
+
+    <!-- Diálogo para Confirmar Eliminación -->
+    <DeletePaymentDialog
+      v-if="isDeleteDialogOpen"
+      @close="handleDeleteDialogClose"
+    />
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
-import PaymentCard from "../components/payment-card.component,.vue";
+import PaymentCard from "../components/payment-card.component.vue"
 import CreateEditPaymentDialog from "../components/create-edit-payment-dialog.component.vue";
 import DeletePaymentDialog from "../components/delete-payment-dialog.component.vue";
 import PaymentMethodosService from "../services/payment-methodos.service.js";
@@ -49,60 +58,65 @@ export default {
   name: "PaymentPage",
   components: {
     PaymentCard,
+    CreateEditPaymentDialog,
+    DeletePaymentDialog,
   },
-  setup() {
-  
-    const cards = ref([]);
-    const user = JSON.parse(window.localStorage.getItem("user") || "{}");
-
-    const loadCards = async () => {
+  data() {
+    return {
+      cards: [],
+      isAddEditDialogOpen: false,
+      isDeleteDialogOpen: false,
+      selectedCard: null,
+      cardToDelete: null,
+      user: JSON.parse(window.localStorage.getItem("user") || "{}"),
+    };
+  },
+  mounted() {
+    this.loadCards();
+  },
+  methods: {
+    async loadCards() {
       try {
-        cards.value = await PaymentMethodosService.getByUserId(user.id, user.role);
+        this.cards = await PaymentMethodosService.getByUserId(this.user.id, this.user.role);
       } catch (error) {
         console.error("Error loading cards:", error);
       }
-    };
-
-    const addEditCard = (card = null) => {
-      dialog.open(CreateEditPaymentDialog, {
-        data: card,
-        header: card ? "Edit Card" : "Add New Card",
-      }).onClose((result) => {
-        if (result) {
-          if (card) {
-            const index = cards.value.findIndex((c) => c.id === result.id);
-            if (index !== -1) cards.value[index] = result;
-            toast.add({ severity: "success", summary: "Success", detail: "Card updated successfully", life: 2000 });
-          } else {
-            cards.value.push(result);
-            toast.add({ severity: "success", summary: "Success", detail: "Card added successfully", life: 2000 });
-          }
+    },
+    openAddEditDialog(card = null) {
+      this.selectedCard = card;
+      this.isAddEditDialogOpen = true;
+    },
+    handleAddEditDialogClose(result) {
+      this.isAddEditDialogOpen = false;
+      if (result) {
+        const index = this.cards.findIndex((c) => c.id === result.id);
+        if (index !== -1) {
+          this.cards[index] = result;
+          toast.add({ severity: "success", summary: "Success", detail: "Card updated successfully", life: 2000 });
+        } else {
+          this.cards.push(result);
+          toast.add({ severity: "success", summary: "Success", detail: "Card added successfully", life: 2000 });
         }
-      });
-    };
-
-    const removeCard = (card) => {
-      dialog.open(DeletePaymentDialog, {
-        header: "Confirm Deletion",
-      }).onClose((result) => {
-        if (result === "delete") {
-          PaymentMethodsService.delete(card.id)
-            .then(() => {
-              cards.value = cards.value.filter((c) => c.id !== card.id);
-              toast.add({ severity: "info", summary: "Card Removed", detail: "Card removed successfully", life: 2000 });
-            })
-            .catch((error) => console.error("Error deleting card:", error));
-        }
-      });
-    };
-
-    onMounted(loadCards);
-
-    return {
-      cards,
-      addEditCard,
-      removeCard,
-    };
+      }
+    },
+    confirmRemoveCard(card) {
+      this.cardToDelete = card;
+      this.isDeleteDialogOpen = true;
+    },
+    handleDeleteDialogClose(result) {
+      this.isDeleteDialogOpen = false;
+      if (result === "delete" && this.cardToDelete) {
+        PaymentMethodosService.delete(this.cardToDelete.id)
+          .then(() => {
+            this.cards = this.cards.filter((c) => c.id !== this.cardToDelete.id);
+            toast.add({ severity: "info", summary: "Success", detail: "Card removed successfully", life: 2000 });
+          })
+          .catch((error) => console.error("Error deleting card:", error));
+      }
+    },
+    goToHistory() {
+      this.$router.push("/history");
+    },
   },
 };
 </script>

@@ -1,142 +1,124 @@
 <template>
-  <div>
-    <h2 class="dialog-title">
-      {{ editMode ? "Update your card" : "Add a new card" }}
-    </h2>
+  <pv-dialog
+    v-model:visible="isDialogOpen"
+    :header="dialogTitle"
+    modal
+    closable
+    @hide="closeDialog"
+  >
     <form @submit.prevent="onSubmit" class="card-form">
-      <!-- Campo de Número de Tarjeta -->
-      <div class="form-field--full">
-        <pv-input-text
-          v-model="cardForm.cardNumber"
-          placeholder="Card number"
-          required
-          class="p-inputtext-sm p-d-block"
-        />
+      <div class="dialog-title">
+        <h2>{{ editMode ? "Update your card" : "Add a new card" }}</h2>
       </div>
 
-      <!-- Campo de Titular de la Tarjeta -->
+      <!-- Campos del formulario -->
       <div class="form-field--full">
-        <pv-input-text
-          v-model="cardForm.cardHolder"
-          placeholder="Card holder"
-          required
-          class="p-inputtext-sm p-d-block"
-        />
+        <label for="cardNumber">Card Number</label>
+        <pv-input-text id="cardNumber" v-model="form.cardNumber" required />
       </div>
 
-      <!-- Campos de Fecha de Expiración y CVV -->
+      <div class="form-field--full">
+        <label for="cardHolder">Card Holder</label>
+        <pv-input-text id="cardHolder" v-model="form.cardHolder" required />
+      </div>
+
       <div class="form-row">
-        <pv-input-text
-          v-model="cardForm.expirationDate"
-          placeholder="Exp. Date"
-          required
-          class="p-inputtext-sm"
-        />
-        <pv-input-text
-          v-model="cardForm.cvv"
-          placeholder="CVV"
-          required
-          class="p-inputtext-sm"
-        />
+        <div class="form-field--half">
+          <label for="expirationDate">Exp. Date</label>
+          <pv-input-text id="expirationDate" v-model="form.expirationDate" required />
+        </div>
+
+        <div class="form-field--half">
+          <label for="cvv">CVV</label>
+          <pv-input-text id="cvv" v-model="form.cvv" required />
+        </div>
       </div>
 
       <!-- Botones de Acción -->
-      <div class="p-d-flex p-jc-end p-mt-3">
-        <pv-button
-          label="Cancel"
-          class="btn btn--secondary p-button-outlined"
-          @click="onCancel"
-        />
-        <pv-button
-          label="Add"
-          v-if="!editMode"
-          class="btn btn--primary p-button-raised p-ml-2"
-          type="submit"
-        />
-        <pv-button
-          label="Update"
-          v-if="editMode"
-          class="btn btn--primary p-button-raised p-ml-2"
-          type="submit"
-        />
+      <div class="dialog-footer">
+        <pv-button label="Cancel" class="p-button-text" @click="closeDialog" />
+        <pv-button :label="editMode ? 'Update' : 'Add'" type="submit" />
       </div>
     </form>
-  </div>
+  </pv-dialog>
 </template>
 
 <script>
 import PaymentMethodosService from '../services/payment-methodos.service';
 
 export default {
-  name: "CreateEditPaymentDialog",
+  name: 'CreateEditPaymentDialog',
   props: {
     data: Object,
   },
-  setup(props, { emit }) {
-    const dialog = useDialog();
-
-    // Modo edición y formulario reactivo
-    const editMode = ref(!!props.data);
-    const cardForm = reactive({
-      cardNumber: props.data?.cardNumber || "",
-      cardHolder: props.data?.cardHolder || "",
-      cvv: props.data?.cvv || "",
-      expirationDate: props.data?.expirationDate || "",
-    });
-
-    const user = JSON.parse(window.localStorage.getItem("user") || "{}");
-
-    // Función para cerrar el diálogo
-    const onCancel = () => {
-      dialog.close();
-    };
-
-    // Método para agregar una nueva tarjeta
-    const onAddCard = async () => {
-      const card = {
-        cardNumber: cardForm.cardNumber,
-        cardHolder: cardForm.cardHolder,
-        cvv: cardForm.cvv,
-        expirationDate: cardForm.expirationDate,
-      };
-
-      // Asigna el tutorId o caregiverId basado en el rol
-      if (user.role === "tutor") card.tutorId = user.id;
-      else if (user.role === "caregiver") card.caregiverId = user.id;
-
-      try {
-        const createdCard = await PaymentMethodsService.create(card);
-        dialog.close(createdCard);
-      } catch (error) {
-        console.error("Error adding card:", error);
-      }
-    };
-
-    // Método para editar una tarjeta existente
-    const onEditCard = async () => {
-      try {
-        const updatedCard = await PaymentMethodsService.patch(props.data.id, cardForm);
-        dialog.close(updatedCard);
-      } catch (error) {
-        console.error("Error updating card:", error);
-      }
-    };
-
-    // Manejo del envío del formulario
-    const onSubmit = () => {
-      if (editMode.value) {
-        onEditCard();
-      } else {
-        onAddCard();
-      }
-    };
-
+  data() {
     return {
-      cardForm,
-      editMode,
-      onSubmit,
-      onCancel,
+      isDialogOpen: true,
+      editMode: !!this.data,
+      form: {
+        cardNumber: this.data?.cardNumber || '',
+        cardHolder: this.data?.cardHolder || '',
+        expirationDate: this.data?.expirationDate || '',
+        cvv: this.data?.cvv || '',
+      },
     };
+  },
+  computed: {
+    dialogTitle() {
+      return this.editMode ? 'Update your card' : 'Add a new card';
+    },
+  },
+  methods: {
+    closeDialog() {
+      this.isDialogOpen = false;
+      this.$emit('close');
+    },
+    async onAddCard() {
+      try {
+        const user = JSON.parse(window.localStorage.getItem('user') || '{}');
+        const card = { ...this.form };
+
+        // Asigna el rol del usuario al nuevo objeto de tarjeta
+        if (user.role === 'tutor') {
+          card.tutorId = user.id;
+        } else if (user.role === 'caregiver') {
+          card.caregiverId = user.id;
+        }
+
+        // Llamada al servicio para crear la tarjeta
+        const createdCard = await PaymentMethodosService.create(card);
+
+        if (createdCard) {
+          this.$emit('close', createdCard);
+          this.closeDialog();
+        } else {
+          console.error("Error: No se devolvieron datos de la tarjeta creada.");
+        }
+      } catch (error) {
+        console.error("Error al crear la tarjeta:", error);
+      }
+    },
+    async onEditCard() {
+      try {
+        const updatedCard = await PaymentMethodosService.patch(this.data.id, this.form);
+
+        if (updatedCard) {
+          this.$emit('close', updatedCard);
+          this.closeDialog();
+        } else {
+          console.error("Error: No se devolvieron datos de la tarjeta actualizada.");
+        }
+      } catch (error) {
+        console.error("Error al actualizar la tarjeta:", error);
+      }
+    },
+    onSubmit() {
+      if (this.editMode) {
+        this.onEditCard();
+      } else {
+        this.onAddCard();
+      }
+    },
   },
 };
 </script>
@@ -144,8 +126,11 @@ export default {
 <style scoped>
 .dialog-title {
   text-align: center;
+  font-size: 1.25em;
+  font-weight: bold;
+  color: #333; /* Color del título */
+  margin-bottom: 1em;
 }
-
 .card-form {
   padding-top: 8px;
 }
@@ -160,11 +145,38 @@ export default {
   gap: 16px;
 }
 
-.btn--secondary {
-  color: #156683 !important;
+.form-field--half {
+  flex: 1;
 }
 
-.btn--primary {
-  background: #156683 !important;
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+button {
+  font-size: 1em;
+}
+
+p-button {
+  color: #156683;
+}
+
+p-button.p-button-text {
+  color: #666; /* Color para el botón Cancel */
+}
+
+input {
+  font-size: 1em;
+  color: #333; /* Color del texto dentro de los campos */
+  background-color: #fff; /* Fondo blanco */
+}
+
+label {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #333; /* Color de las etiquetas */
 }
 </style>

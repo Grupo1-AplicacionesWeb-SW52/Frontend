@@ -30,6 +30,16 @@ class PaymentMethodsService {
 		}
 	}
 
+	async create(card) {
+		try {
+			const response = await http.post(this.basePath, card);
+			return response.data;
+		} catch (error) {
+			this.handleError(error);
+			return null;
+		}
+	}
+
 	// Manejo de errores
 	handleError(error) {
 		console.error('Error en PaymentMethodsService:', error);

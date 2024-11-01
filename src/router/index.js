@@ -15,6 +15,7 @@ import ReservationsPageComponent from '../reservations/pages/ReservationsPage.co
 import SelectRole from '../auth/pages/select-role.vue';
 import SidenavPage from '../public/pages/sidenav.page.vue';
 import PaymentHistory from '../payment/pages/payment-history.page.vue';
+import ServiceDetailPage from '../services-profile/pages/service-detail.page.vue';
 
 const router = createRouter({
 	history: createWebHistory(),
@@ -50,6 +51,11 @@ const router = createRouter({
 					path: '/reservations',
 					component: ReservationsPageComponent,
 					meta: { title: 'Reservation' },
+				},
+				{
+					path: '/your-service',
+					component: ServiceDetailPage,
+					meta: { title: 'Your Services' },
 				},
 			],
 		},
