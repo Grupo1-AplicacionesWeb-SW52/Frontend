@@ -1,44 +1,31 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import ProfileDetails from '../components/profile/ProfileDetails.vue';
-import ProfileBiography from '../components/profile/ProfileBiography.vue';
-import ProfileHeader from '../components/profile/ProfileHeader.vue';
-import ProfileServiceInfo from '../components/profile/ProfileServiceInfo.vue';
+/**
+ * Vue Router
+ * @description: Vue Router configuration
+ * @docs: https://router.vuejs.org/
+ */
 
-const routes = [
-  {
-    path: '/profile/details',
-    name: 'ProfileDetails',
-    component: ProfileDetails,
-    meta: { title: 'Profile Details' }
-  },
-  {
-    path: '/profile/biography',
-    name: 'ProfileBiography',
-    component: ProfileBiography,
-    meta: { title: 'Profile Biography' }
-  },
-  {
-    path: '/profile/header',
-    name: 'ProfileHeader',
-    component: ProfileHeader,
-    meta: { title: 'Profile Header' }
-  },
-  {
-    path: '/profile/service-info',
-    name: 'ProfileServiceInfo',
-    component: ProfileServiceInfo,
-    meta: { title: 'Profile Service Info' }
-  }
-];
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeComponent from '../public/pages/home.component.vue';
+import ServiceDetailPage from '../servicedetail/pages/ServiceDetail-page.component.vue';
+import AboutComponent from '../public/pages/about.component.vue';
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+	history: createWebHistory(),
+	routes: [
+		{ path: '/home', component: HomeComponent, meta: { title: 'Home' } },
+		{ path: '/about', component: AboutComponent, meta: { title: 'About us' } },
+		{ path: '/service-detail', component: ServiceDetailPage, name: 'ServiceDetail'},
+		{ path: '/', redirect: '/home' },
+	],
 });
 
+/**
+ * Set Business name as prefix for each page title
+ */
 router.beforeEach((to, from, next) => {
-  document.title = `SafeChild | ${to.meta.title}`;
-  next();
+	let baseTitle = 'CartNest';
+	document.title = `${baseTitle} | ${to.meta['title']}`;
+	next();
 });
 
 export default router;
