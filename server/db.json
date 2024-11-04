@@ -1,201 +1,251 @@
 {
-  "parents": [
-    {
-      "id": 1,
-      "name": "John",
-      "surname": "Doe",
-      "email": "john@example.com",
-      "document": "12345678",
-      "phoneNumber": "555-1234",
-      "password": "password123"
-    },
-    {
-      "id": 2,
-      "name": "Renzo",
-      "surname": "Perez",
-      "email": "renzo@example.com",
-      "document": "87654321",
-      "phoneNumber": "555-5678",
-      "password": "password456"
-    },
-    {
-      "id": 3,
-      "name": "Juan",
-      "surname": "Castro",
-      "email": "appsweb@gmail.com",
-      "document": "561487",
-      "phoneNumber": "123456789",
-      "password": "password4957"
-    }
-  ],
   "caregivers": [
     {
       "id": 1,
-      "name": "Maria Gomez",
-      "email": "maria.gomez@example.com",
-      "password": "caregiver2024",
-      "profile_picture": "https://randomuser.me/api/portraits/med/women/45.jpg",
-      "role": "caregiver",
-      "rating":4,
-      "phone": "+51 912345678",
-      "location": "La Molina",
-      "address": "Calle Los Olivos 456, Lima, Peru",
-      "additional_info": {
-        "date_of_birth": "1990-07-20",
-        "gender": "female",
-        "experience": "5 years of experience taking care of children aged 2 to 10 years",
-        "bio": "Maria is a dedicated caregiver with skills in early childhood education and first aid."
-      },
-      "availability": {
-        "monday": "08:00 - 16:00",
-        "tuesday": "08:00 - 16:00",
-        "wednesday": "08:00 - 16:00",
-        "thursday": "08:00 - 16:00",
-        "friday": "08:00 - 16:00"
-      }
-    },
-    {
-      "id": 2,
-      "name": "Pedro Diaz",
-      "email": "pedro.diaz@example.com",
-      "password": "PedroCaregiver",
-      "profile_picture":"https://randomuser.me/api/portraits/med/men/48.jpg",
-      "role": "caregiver",
-      "rating":4.7,
-      "phone": "+51 923456789",
-      "location": "San Borja",
-      "address": "Av. Libertad 789, Arequipa, Peru",
-      "additional_info": {
-        "date_of_birth": "1985-03-10",
-        "gender": "male",
-        "experience": "8 years of experience caring for children and teenagers",
-        "bio": "Pedro specializes in adolescent care and has training in child psychology."
-      },
-      "availability": {
-        "monday": "10:00 - 18:00",
-        "wednesday": "10:00 - 18:00",
-        "friday": "10:00 - 18:00",
-        "saturday": "09:00 - 14:00"
-      }
-    },
-    {
-      "id": 3,
-      "name": "Elena Perez",
-      "email": "elena.perez@example.com",
-      "password": "ElenaCaregiver",
-      "profile_picture": "https://randomuser.me/api/portraits/med/women/47.jpg",
-      "role": "caregiver",
-      "rating":3,
-      "phone": "+51 934567890",
-      "location": "Miraflores",
-      "address": "Jr. Las Flores 321, Cusco, Peru",
-      "additional_info": {
-        "date_of_birth": "1995-11-05",
-        "gender": "female",
-        "experience": "3 years of experience caring for young children",
-        "bio": "Elena is a certified caregiver with knowledge in early stimulation."
-      },
-      "availability": {
-        "tuesday": "08:00 - 12:00",
-        "thursday": "14:00 - 18:00",
-        "saturday": "10:00 - 16:00"
-      }
-    },
-    {
-      "id": 4,
-      "name": "Lucia Hernandez",
-      "email": "lucia.hernandez@example.com",
-      "password": "LuciaCaregiver",
-      "profile_picture": "https://randomuser.me/api/portraits/med/women/48.jpg",
-      "role": "caregiver",
-      "rating":4,
-      "phone": "+51 945678321",
-      "location": "Surquillo",
-      "address": "Calle San Martín 654, Trujillo, Peru",
-      "additional_info": {
-        "date_of_birth": "1988-02-15",
-        "gender": "female",
-        "experience": "6 years of experience in childcare",
-        "bio": "Lucia has a warm approach to childcare, focusing on educational activities."
-      },
-      "availability": {
-        "monday": "09:00 - 17:00",
-        "wednesday": "09:00 - 17:00",
-        "friday": "09:00 - 17:00"
-      }
-    },
-    {
-      "id": 5,
-      "name": "Roberto Sanchez",
-      "email": "roberto.sanchez@example.com",
-      "password": "RobertoCaregiver",
-      "profile_picture":"https://randomuser.me/api/portraits/med/men/49.jpg",
-      "role": "caregiver",
-      "rating":2,
-      "phone": "+51 956789432",
-      "location": "San Isidro",
-      "address": "Av. Perú 123, Piura, Peru",
-      "additional_info": {
-        "date_of_birth": "1990-06-20",
-        "gender": "male",
-        "experience": "4 years of experience caring for children",
-        "bio": "Roberto is great at engaging kids in outdoor activities and sports."     
-      },
-      "availability": {
-        "monday": "08:00 - 14:00",
-        "thursday": "08:00 - 14:00",
-        "friday": "08:00 - 14:00"
-      }
-    },
-    {
-      "id": 6,
-      "name": "Carmen Salas",
-      "email": "carmen.salas@example.com",
-      "profile_picture": "https://randomuser.me/api/portraits/med/women/49.jpg",
-      "password": "CarmenCaregiver",
-      "role": "caregiver",
-      "rating":5,
-      "phone": "+51 978654321",
-      "location": "La Molina",
-      "address": "Jr. Bolivia 987, Tacna, Peru",
-      "additional_info": {
-        "date_of_birth": "1993-12-01",
-        "gender": "female",
-        "experience": "2 years of experience in early childhood care",
-        "bio": "Carmen is an energetic caregiver with a focus on creative play."
-      },
-      "availability": {
-        "tuesday": "10:00 - 16:00",
-        "thursday": "10:00 - 16:00",
-        "saturday": "10:00 - 16:00"
-      }
+      "fullName": "María López",
+      "email": "maria.lopez@example.com",
+      "phone": "987654322",
+      "document": "00000001",
+      "password": "maria123",
+      "profileImg": "https://randomuser.me/api/portraits/med/women/49.jpg",
+      "address": "Av. Los Pinos 123",
+      "district": "San Miguel"
     }
   ],
-  "reservations":[
+  "tutors": [
     {
       "id": 1,
-      "caregiver": {
-        "name": "John Doe",
-        "photo": "/images/john.jpg",
-        "workLocation": "New York"
+      "fullName": "Juan Pérez",
+      "email": "juan.perez@example.com",
+      "phone": "987654321",
+      "document": "00000000",
+      "password": "juan123",
+      "profileImg": "https://randomuser.me/api/portraits/med/men/48.jpg",
+      "address": "Av. La Marina 123",
+      "district": "San Miguel"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "caregiverId": 1,
+      "description": "Don't worry, I'll take care of your loved one with the utmost dedication and care. I understand the importance of providing a safe and nurturing environment, and I am committed to ensuring that your loved one feels comfortable and well-cared for at all times. My approach is centered on empathy, patience, and a genuine passion for caregiving. I strive to create a positive and supportive atmosphere where your loved one can thrive and feel valued. Whether it's through engaging activities, attentive care, or simply being a comforting presence, I am here to provide the best possible care for your loved one.",
+      "schedules": [
+        {
+          "day": "mon",
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "16:00"
+          }
+        },
+        {
+          "day": "thu",
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "16:00"
+          }
+        },
+        {
+          "day": "fri",
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "12:00"
+          }
+        }
+      ],
+      "workaround": [
+        "San Miguel",
+        "Magdalena",
+        "Surquillo",
+        "San Isidro"
+      ],
+      "farePerHour": 3.2,
+      "rating": 4.5
+    }
+  ],
+  "reservations": [
+    {
+      "id": 1,
+      "tutorId": 1,
+      "caregiverId": 1,
+      "serviceId": 1,
+      "status": "completed",
+      "createdAt": "2021-12-01",
+      "schedule": {
+        "date": "2021-12-04",
+        "startTime": "08:00",
+        "endTime": "16:00"
       },
-      "date": "2024-09-25",
-      "totalTimeWork": "5h",
-      "totalFair": 100,
-      "status": "Pending"
+      "totalFare": 11.9
+    },
+    {
+      "tutorId": 1,
+      "caregiverId": 1,
+      "serviceId": 1,
+      "status": "pending",
+      "createdAt": "2024-10-13T16:11:34.436Z",
+      "schedule": {
+        "date": "2024-10-21T05:00:00.000Z",
+        "startTime": "08:00",
+        "endTime": "12:00"
+      },
+      "totalFare": 12.8,
+      "id": 2
+    },
+    {
+      "tutorId": 1,
+      "caregiverId": 1,
+      "serviceId": 1,
+      "status": "pending",
+      "createdAt": "2024-10-13T18:16:35.255Z",
+      "schedule": {
+        "date": "2024-10-14T05:00:00.000Z",
+        "startTime": "08:00",
+        "endTime": "16:00"
+      },
+      "totalFare": 25.6,
+      "id": 3
+    },
+    {
+      "tutorId": 1,
+      "caregiverId": 1,
+      "serviceId": 1,
+      "status": "pending",
+      "createdAt": "2024-10-13T18:21:46.346Z",
+      "schedule": {
+        "date": "2024-10-17T05:00:00.000Z",
+        "startTime": "08:00",
+        "endTime": "12:00"
+      },
+      "totalFare": 12.8,
+      "id": 4
+    },
+    {
+      "tutorId": 1,
+      "caregiverId": 1,
+      "serviceId": 1,
+      "status": "pending",
+      "createdAt": "2024-10-13T18:27:28.988Z",
+      "schedule": {
+        "date": "2024-10-18T05:00:00.000Z",
+        "startTime": "08:00",
+        "endTime": "12:00"
+      },
+      "totalFare": 12.8,
+      "id": 5
+    },
+    {
+      "tutorId": 1,
+      "caregiverId": 1,
+      "serviceId": 1,
+      "status": "pending",
+      "createdAt": "2024-10-13T18:28:26.340Z",
+      "schedule": {
+        "date": "2024-10-14T05:00:00.000Z",
+        "startTime": "08:00",
+        "endTime": "12:00"
+      },
+      "totalFare": 12.8,
+      "id": 6
+    },
+    {
+      "tutorId": 1,
+      "caregiverId": 1,
+      "serviceId": 1,
+      "status": "pending",
+      "createdAt": "2024-10-13T18:29:09.674Z",
+      "schedule": {
+        "date": "2024-10-14T05:00:00.000Z",
+        "startTime": "08:00",
+        "endTime": "17:00"
+      },
+      "totalFare": 28.8,
+      "id": 7
+    }
+  ],
+  "payments": [
+    {
+      "id": 1,
+      "tutorId": 1,
+      "caregiverId": 1,
+      "serviceId": 1,
+      "tutorPaymentMethodId": 4,
+      "caregiverPaymentMethodId": 3,
+      "tutorPaymentMethod": {
+        "cardNumber": "5555 1231 5555 5321",
+        "cardHolder": "JUAN PEREZ GONZALES ABARCÓN",
+        "cvv": "790",
+        "expirationDate": "11/24",
+        "userId": 1,
+        "id": 4
+      },
+      "caregiverPaymentMethod": {
+        "id": 3,
+        "userId": 2,
+        "cardNumber": "1234567890123456",
+        "expirationDate": "12/24",
+        "cvv": "123",
+        "cardHolder": "María López"
+      },
+      "totalAmount": 25.6,
+      "date": "2021-12-01"
+    },
+    {
+      "tutorId": 1,
+      "caregiverId": 1,
+      "serviceId": 1,
+      "totalAmount": 12.8,
+      "date": "2024-10-13T18:30:22.187Z",
+      "tutorPaymentMethodId": 4,
+      "tutorPaymentMethod": {
+        "cardNumber": "5555 1231 5555 5325",
+        "cardHolder": "JUAN PEREZ GONZALES ABARCÓN",
+        "cvv": "790",
+        "expirationDate": "11/24",
+        "tutorId": 1,
+        "id": 4
+      },
+      "id": 2
+    }
+  ],
+  "user-payment-methods": [
+    {
+      "id": 3,
+      "caregiverId": 1,
+      "cardNumber": "1234567890123456",
+      "expirationDate": "12/24",
+      "cvv": "123",
+      "cardHolder": "María López"
+    },
+    {
+      "cardNumber": "5555 1231 5555 5325",
+      "cardHolder": "JUAN PEREZ GONZALES ABARCÓN",
+      "cvv": "790",
+      "expirationDate": "11/24",
+      "tutorId": 1,
+      "id": 4
+    },
+    {
+      "cardHolder": "JUAN PEREZ DEL TRABAJO",
+      "cardNumber": "8888 8888 8888 8888",
+      "cvv": "790",
+      "expirationDate": "12/23",
+      "tutorId": 1,
+      "id": 5
+    }
+  ],
+  "chats": [
+    {
+      "id": 1,
+      "user": { "name": "María López", "profileImage": "https://randomuser.me/api/portraits/med/women/49.jpg" },
+      "lastMessage": "Estoy aquí para ayudarte.",
+      "lastMessageDate": "2024-10-27T14:30:00"
     },
     {
       "id": 2,
-      "caregiver": {
-        "name": "Jane Smith",
-        "photo": "/images/jane.jpg",
-        "workLocation": "Los Angeles"
-      },
-      "date": "2024-09-26",
-      "totalTimeWork": "3h",
-      "totalFair": 75,
-      "status": "Realized"
+      "user": { "name": "Juan Pérez", "profileImage": "https://randomuser.me/api/portraits/med/men/48.jpg" },
+      "lastMessage": "¿Cuándo necesitas los cuidados?",
+      "lastMessageDate": "2024-10-27T13:45:00"
     }
   ]
-  
 }

@@ -1,55 +1,21 @@
-/**
- * Vue Router
- * @description: Vue Router configuration
- * @docs: https://router.vuejs.org/
- */
-
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeComponent from '../public/pages/home.component.vue';
-import AboutComponent from '../public/pages/about.component.vue';
-import SignUpFatherComponent from '../auth/pages/sign-up-father.component.vue';
-import SignInFatherComponent from '../auth/pages/sign-in-father.component.vue';
-import SignInChildCareComponent from '../auth/pages/sign-in-child-care.component.vue';
-import SignUpChildCareComponent from '../auth/pages/sign-up-child-care.component.vue';
-import CaregiverSearch from '../searches/pages/caregiver-search.vue';
-import PaymentPageComponent from '../payment/pages/payment-page.component.vue';
-import ReservationsPageComponent from '../reservations/pages/ReservationsPage.component.vue';
+import ChatManagement from '../chat/pages/chat-management.component.vue';
+import ChatDetail from '../chat/pages/chat-detail.component.vue';
+
+const routes = [
+    { path: '/chat', name: 'Chat', component: ChatManagement, meta: { title: 'Chat Online' } },
+    { path: '/chat/:id', name: 'ChatDetail', component: ChatDetail, meta: { title: 'Chat Detail' } },
+    { path: '/', redirect: '/chat' }
+];
 
 const router = createRouter({
-	history: createWebHistory(),
-	routes: [
-		{ path: '/home', component: HomeComponent, meta: { title: 'Home' } },
-		{ path: '/about', component: AboutComponent, meta: { title: 'About us' } },
-		{ path: '/sign-up-father', component: SignUpFatherComponent },
-		{ path: '/sign-in-father', component: SignInFatherComponent },
-		{ path: '/sign-in-child', component: SignInChildCareComponent },
-		{ path: '/sign-up-child', component: SignUpChildCareComponent },
-		{
-			path: '/search',
-			component: CaregiverSearch,
-			meta: { title: 'Search,' },
-		},
-		{
-			path: '/payment',
-			component: PaymentPageComponent,
-			meta: { title: 'Payment' },
-		},
-		{
-			path: '/reservations',
-			component: ReservationsPageComponent,
-			meta: { title: 'Reservation' },
-		},
-		{ path: '/', redirect: '/sign-in-father' },
-	],
+    history: createWebHistory(),
+    routes
 });
 
-/**
- * Set Business name as prefix for each page title
- */
 router.beforeEach((to, from, next) => {
-	let baseTitle = 'CartNest';
-	document.title = `${baseTitle} | ${to.meta['title']}`;
-	next();
+    document.title = `EduNest | ${to.meta.title}`;
+    next();
 });
 
 export default router;
