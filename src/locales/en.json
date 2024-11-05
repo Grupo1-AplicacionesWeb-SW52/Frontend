@@ -1,0 +1,13 @@
+{
+  "sidebar": {
+    "searchCaregivers": "Search Caregivers",
+    "reservations": "Reservations",
+    "chatOnline": "Chat Online",
+    "logout": "Logout"
+  },
+  "chat": {
+    "title": "Chat Online",
+    "chatButton": "Chat",
+    "lastMessage": "Last message"
+  }
+}
