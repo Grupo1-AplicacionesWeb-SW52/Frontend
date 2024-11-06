@@ -52,7 +52,7 @@
 import PaymentCard from "../components/payment-card.component.vue"
 import CreateEditPaymentDialog from "../components/create-edit-payment-dialog.component.vue";
 import DeletePaymentDialog from "../components/delete-payment-dialog.component.vue";
-import PaymentMethodosService from "../services/payment-methodos.service.js";
+import PaymentMethodsService from "../services/payment-methods.service.js";
 
 export default {
   name: "PaymentPage",
@@ -77,7 +77,7 @@ export default {
   methods: {
     async loadCards() {
       try {
-        this.cards = await PaymentMethodosService.getByUserId(this.user.id, this.user.role);
+        this.cards = await PaymentMethodsService.getByUserId(this.user.id, this.user.role);
       } catch (error) {
         console.error("Error loading cards:", error);
       }
@@ -106,7 +106,7 @@ export default {
     handleDeleteDialogClose(result) {
       this.isDeleteDialogOpen = false;
       if (result === "delete" && this.cardToDelete) {
-        PaymentMethodosService.delete(this.cardToDelete.id)
+        PaymentMethodsService.delete(this.cardToDelete.id)
           .then(() => {
             this.cards = this.cards.filter((c) => c.id !== this.cardToDelete.id);
             toast.add({ severity: "info", summary: "Success", detail: "Card removed successfully", life: 2000 });
