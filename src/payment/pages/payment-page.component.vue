@@ -1,95 +1,146 @@
+<template>
+  <div class="payment-methods-container">
+    <h1>Your payment methods</h1>
+    <p>
+      In this section, you manage your payment wallet by registering your cards
+      and setting up preferred payment methods for a seamless checkout experience.
+    </p>
+
+    <!-- Botones de Acción -->
+    <div class="action-buttons">
+      <pv-button
+        label="Add a card"
+        icon="pi pi-plus"
+        class="btn btn--add-card"
+        @click="openAddEditDialog"
+      />
+      <pv-button
+        label="History"
+        icon="pi pi-history"
+        class="btn btn--history"
+        @click="goToHistory"
+      />
+    </div>
+
+    <!-- Lista de Tarjetas -->
+    <div class="card-list">
+      <PaymentCard
+        v-for="card in cards"
+        :key="card.id"
+        :card="card"
+        @delete="confirmRemoveCard(card)"
+        @edit="openAddEditDialog(card)"
+      />
+    </div>
+
+    <!-- Diálogo para Añadir/Editar Tarjeta -->
+    <CreateEditPaymentDialog
+      v-if="isAddEditDialogOpen"
+      :data="selectedCard"
+      @close="handleAddEditDialogClose"
+    />
+
+    <!-- Diálogo para Confirmar Eliminación -->
+    <DeletePaymentDialog
+      v-if="isDeleteDialogOpen"
+      @close="handleDeleteDialogClose"
+    />
+  </div>
+</template>
+
 <script>
-import PaymentFormComponent from '../components/payment-form.component.vue';
+import PaymentCard from "../components/payment-card.component.vue"
+import CreateEditPaymentDialog from "../components/create-edit-payment-dialog.component.vue";
+import DeletePaymentDialog from "../components/delete-payment-dialog.component.vue";
+import PaymentMethodosService from "../services/payment-methodos.service.js";
 
 export default {
-  name: 'PaymentPageComponent',
+  name: "PaymentPage",
   components: {
-    PaymentFormComponent,
+    PaymentCard,
+    CreateEditPaymentDialog,
+    DeletePaymentDialog,
   },
   data() {
     return {
       cards: [],
-      showForm: false,
-      paymentSuccess: false,
+      isAddEditDialogOpen: false,
+      isDeleteDialogOpen: false,
+      selectedCard: null,
+      cardToDelete: null,
+      user: JSON.parse(window.localStorage.getItem("user") || "{}"),
     };
   },
+  mounted() {
+    this.loadCards();
+  },
   methods: {
-    addCard(newCard) {
-      this.cards.push(newCard);
-      this.showForm = false;
+    async loadCards() {
+      try {
+        this.cards = await PaymentMethodosService.getByUserId(this.user.id, this.user.role);
+      } catch (error) {
+        console.error("Error loading cards:", error);
+      }
     },
-    removeCard(card) {
-      this.cards = this.cards.filter(c => c !== card);
+    openAddEditDialog(card = null) {
+      this.selectedCard = card;
+      this.isAddEditDialogOpen = true;
+    },
+    handleAddEditDialogClose(result) {
+      this.isAddEditDialogOpen = false;
+      if (result) {
+        const index = this.cards.findIndex((c) => c.id === result.id);
+        if (index !== -1) {
+          this.cards[index] = result;
+          toast.add({ severity: "success", summary: "Success", detail: "Card updated successfully", life: 2000 });
+        } else {
+          this.cards.push(result);
+          toast.add({ severity: "success", summary: "Success", detail: "Card added successfully", life: 2000 });
+        }
+      }
+    },
+    confirmRemoveCard(card) {
+      this.cardToDelete = card;
+      this.isDeleteDialogOpen = true;
+    },
+    handleDeleteDialogClose(result) {
+      this.isDeleteDialogOpen = false;
+      if (result === "delete" && this.cardToDelete) {
+        PaymentMethodosService.delete(this.cardToDelete.id)
+          .then(() => {
+            this.cards = this.cards.filter((c) => c.id !== this.cardToDelete.id);
+            toast.add({ severity: "info", summary: "Success", detail: "Card removed successfully", life: 2000 });
+          })
+          .catch((error) => console.error("Error deleting card:", error));
+      }
+    },
+    goToHistory() {
+      this.$router.push("/history");
     },
   },
 };
 </script>
 
-<template>
-  <div class="payment-methods-container">
-    <h1>Your payment methods</h1>
-    <p>
-      In this area, you can oversee your payment wallet by adding your cards and configuring your preferred payment methods for a smooth checkout process.
-    </p>
-
-    <button @click="showForm = true" class="primary-button">
-      <span class="icon">+</span> Add a card
-    </button>
-
-    <PaymentFormComponent v-if="showForm" @addCard="addCard" />
-
-    <div class="card-list">
-      <div v-for="(card, index) in cards" :key="index" class="payment-card">
-        <div class="card-header">
-          <h3>Number: {{ card.cardNumber }}</h3>
-          <button @click="removeCard(card)" class="icon-button danger">
-            <span class="icon">x</span>
-          </button>
-        </div>
-        <h4>F.V: {{ card.expirationDate }}</h4>
-        <div class="card-content">
-          {{ card.cardHolderName }}
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <style scoped>
 .payment-methods-container {
   padding: 20px;
-  border-radius: 8px; /* Borde redondeado */
-  background-color: #f9f9f9; /* Fondo claro */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
-.payment-methods-container h1 {
+.title {
   font-size: 24px;
   font-weight: bold;
 }
 
-.payment-methods-container p {
+.description {
   font-size: 14px;
   margin-bottom: 20px;
   color: #666;
 }
 
-.primary-button {
-  margin-bottom: 20px;
-  background-color: #0066cc;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 14px;
-  border-radius: 20px;
-  cursor: pointer;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
-}
-
-.primary-button:hover {
-  background-color: #004c99;
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
 }
 
 .card-list {
@@ -98,35 +149,59 @@ export default {
   gap: 20px;
 }
 
+.card-container {
+  width: 300px;
+}
+
+.btn {
+  border-radius: 5px;
+  width: 100%;
+}
+
+.btn--add-card {
+  background-color: #156683 !important;
+  color: white;
+}
+
+.btn--history {
+  color: #156683 !important;
+  border-color: #156683 !important;
+}
+
 .payment-card {
-  width: 200px;
-  position: relative;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.card-header {
+.payment-card-header {
+  background-color: #156683;
+  height: 48px;
+}
+
+.payment-card-content {
+  padding: 16px;
+  background-color: #f0f4f8;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.card-content {
-  font-size: 15px;
+.payment-card-content p {
+  margin: 0;
+  font-size: 14px;
   color: #333;
 }
 
-.icon-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+.payment-card-actions {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.payment-card h3 {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.payment-card h4 {
-  font-size: 14px;
-  color: #888;
+.payment-card-actions .btn {
+  font-size: 12px;
+  padding: 6px 12px;
 }
 </style>

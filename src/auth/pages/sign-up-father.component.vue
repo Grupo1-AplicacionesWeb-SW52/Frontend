@@ -18,21 +18,21 @@ export default {
     };
   },
   methods: {
-    async handleSignUp() {
-      const userService = new UserFatherService();
-      try {
-        await userService.signUp(this.name, this.surname, this.email, this.document, this.phoneNumber, this.password);
-        this.successMessage = 'User registered successfully!';
-        this.errorMessage = '';
-        // Redirigir al SignIn después de un registro exitoso
-        setTimeout(() => {
-          router.push('/sign-in');
-        }, 1500);
-      } catch (error) {
-        this.errorMessage = error.message || 'An error occurred during sign-up.';
-        this.successMessage = '';
-      }
-    },
+    // async handleSignUp() {
+    //   const userService = new UserFatherService();
+    //   try {
+    //     await userService.signUp(this.name, this.surname, this.email, this.document, this.phoneNumber, this.password);
+    //     this.successMessage = 'User registered successfully!';
+    //     this.errorMessage = '';
+    //     // Redirigir al SignIn después de un registro exitoso
+    //     setTimeout(() => {
+    //       router.push('/sign-in');
+    //     }, 1500);
+    //   } catch (error) {
+    //     this.errorMessage = error.message || 'An error occurred during sign-up.';
+    //     this.successMessage = '';
+    //   }
+    // },
   },
 };
 </script>
