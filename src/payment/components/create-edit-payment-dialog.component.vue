@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import PaymentMethodosService from '../services/payment-methodos.service';
+import PaymentMethodsService from '../services/payment-methods.service.js';
 
 export default {
   name: 'CreateEditPaymentDialog',
@@ -86,7 +86,7 @@ export default {
         }
 
         // Llamada al servicio para crear la tarjeta
-        const createdCard = await PaymentMethodosService.create(card);
+        const createdCard = await PaymentMethodsService.create(card);
 
         if (createdCard) {
           this.$emit('close', createdCard);
@@ -100,7 +100,7 @@ export default {
     },
     async onEditCard() {
       try {
-        const updatedCard = await PaymentMethodosService.patch(this.data.id, this.form);
+        const updatedCard = await PaymentMethodsService.patch(this.data.id, this.form);
 
         if (updatedCard) {
           this.$emit('close', updatedCard);
