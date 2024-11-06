@@ -126,17 +126,6 @@ export default {
   padding: 20px;
 }
 
-.title {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.description {
-  font-size: 14px;
-  margin-bottom: 20px;
-  color: #666;
-}
-
 .action-buttons {
   display: flex;
   gap: 10px;
@@ -147,10 +136,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-}
-
-.card-container {
-  width: 300px;
 }
 
 .btn {
@@ -168,36 +153,10 @@ export default {
   border-color: #156683 !important;
 }
 
-.payment-card {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.payment-card-header {
-  background-color: #156683;
-  height: 48px;
-}
-
-.payment-card-content {
-  padding: 16px;
-  background-color: #f0f4f8;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
 .payment-card-content p {
   margin: 0;
   font-size: 14px;
   color: #333;
-}
-
-.payment-card-actions {
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
 }
 
 .payment-card-actions .btn {
