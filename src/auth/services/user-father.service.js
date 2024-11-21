@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export class UserFatherService {
 	constructor() {
-		this.apiUrl = 'http://localhost:3000/parents';
+		this.apiUrl = 'http://localhost:3000/tutors';
 	}
 
 	async signUp(name, surname, email, document, phoneNumber, password) {
