@@ -10,7 +10,7 @@ import { ReservationsApiService } from '../services/reservations-api.service.js'
 import ReservationList from '../components/ReservationsList.component.vue';
 
 export default {
-  name: 'ReservationsPage',
+  name: 'ReservationPage',
   components: {
     ReservationList
   },
@@ -20,20 +20,18 @@ export default {
     };
   },
   async mounted() {
-    await this.fetchReservations();
+    await this.fetchData();
   },
   methods: {
-    async fetchReservations() {
+    async fetchData() {
       const apiService = new ReservationsApiService();
       try {
-        const rawReservations = await apiService.getAll();
-        // Example: Transform data if needed
-        this.reservations = rawReservations.map(reservation => ({
-          ...reservation,
-          reservationDate: new Date(reservation.reservationDate).toLocaleDateString()
-        }));
+        // Llamada a getAll() para obtener las reservas con los cuidadores
+        const reservationsWithCaregiver = await apiService.getAll();
+        this.reservations = reservationsWithCaregiver;
+        console.log('Reservations with caregivers:', this.reservations);
       } catch (error) {
-        console.error('Error fetching reservations:', error);
+        console.error('Error fetching data:', error);
       }
     }
   }
