@@ -2,7 +2,7 @@
   <div class="reservation-card">
     <h3>{{ reservation.caregiver }}</h3>
     <p><strong>Reservation Date:</strong> {{ reservation.reservationDate }}</p>
-    <p><strong>Total Time:</strong> {{ reservation.totalTimeWork }}</p>
+    <p><strong>Total Time:</strong> {{ reservation.totalTime }}</p>
     <p><strong>Status:</strong> {{ reservation.status }}</p>
   </div>
 </template>
@@ -13,7 +13,7 @@ export default {
   props: {
     reservation: {
       type: Object,
-      required: true // Esto significa que la prop es obligatoria
+      required: true
     }
   }
 };
