@@ -1,21 +1,19 @@
 <template>
   <div class="reservation-card">
     <div class="caregiver-info">
-      <!-- Verificar si caregiver está disponible antes de mostrar la imagen y el nombre -->
-      <div v-if="reservation.caregiver">
+      <!-- Imagen del cuidador -->
+      <div class="caregiver-image-container">
         <img :src="reservation.caregiver.profileImg" alt="Caregiver Image" class="caregiver-img" />
-        <div class="caregiver-details">
-          <p><strong>Caregiver Name:</strong> {{ reservation.caregiver.fullName }}</p>
-          <p><strong>Created At:</strong> {{ reservation.createdAt }}</p>
-          <p><strong>Total Fare:</strong> {{ reservation.totalFare }}</p>
-          <p><strong>Status:</strong> {{ reservation.status }}</p>
-          <!-- Mostrar el botón solo si el status es 'pending' -->
-          <button v-if="reservation.status === 'pending'" @click="cancelReservation">Cancel Reservation</button>
-        </div>
       </div>
-      <!-- Si no hay caregiver asignado, mostrar un mensaje alternativo -->
-      <div v-else>
-        <p>No caregiver assigned</p>
+
+      <!-- Información del cuidador -->
+      <div class="caregiver-details">
+        <p><strong>Caregiver Name:</strong> {{ reservation.caregiver.fullName }}</p>
+        <p><strong>Created At:</strong> {{ reservation.createdAt }}</p>
+        <p><strong>Total Fare:</strong> {{ reservation.totalFare }}</p>
+        <p><strong>Status:</strong> {{ reservation.status }}</p>
+        <!-- Mostrar el botón solo si el status es 'pending' -->
+        <button v-if="reservation.status === 'pending'" @click="cancelReservation">Cancel Reservation</button>
       </div>
     </div>
   </div>
@@ -29,9 +27,6 @@ export default {
       required: true
     }
   },
-  mounted() {
-    console.log('Reservation data:', this.reservation);  // Verifica los datos que llegan al componente
-  },
   methods: {
     cancelReservation() {
       console.log('Reserva cancelada');
@@ -40,45 +35,41 @@ export default {
 }
 </script>
 
-
-
 <style scoped>
 .reservation-card {
   display: flex;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  padding: 15px;
+  flex-direction: row;  /* Coloca los elementos en una fila */
+  align-items: center;   /* Centra verticalmente los elementos */
+  padding: 16px;
+  background-color: #fff;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px; /* Agrega más espacio entre las tarjetas */
 }
 
 .caregiver-info {
   display: flex;
+  flex-direction: row;
+  align-items: center;  /* Centra la imagen y los detalles verticalmente */
+}
+
+.caregiver-image-container {
+  margin-right: 16px;   /* Espacio entre la imagen y el texto */
 }
 
 .caregiver-img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin-right: 15px;
+  width: 80px;  /* Ajusta el tamaño de la imagen */
+  height: 80px; /* Mantén la imagen cuadrada */
+  border-radius: 50%;  /* Da forma redonda a la imagen */
+  object-fit: cover;  /* Asegura que la imagen se recorte adecuadamente */
 }
 
 .caregiver-details {
-  display: flex;
-  flex-direction: column;
+  flex: 1;  /* Ocupa el espacio restante */
 }
 
-button {
-  margin-top: 10px;
-  background-color: #25618B;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #1d4e6d;
+.caregiver-details p {
+  margin: 4px 0;  /* Ajusta el espaciado entre los párrafos */
 }
 </style>
+
