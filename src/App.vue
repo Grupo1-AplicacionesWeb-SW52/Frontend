@@ -4,11 +4,6 @@
 
     <!-- Header -->
     <header>
-      <pv-toolbar class="bg-primary" fixed>
-        <template #start>
-          <h3 class="title">Care Nest</h3>
-        </template>
-      </pv-toolbar>
     </header>
 
     <!-- Main Content -->
