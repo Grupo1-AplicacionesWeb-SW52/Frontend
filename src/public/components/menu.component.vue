@@ -47,7 +47,9 @@ export default {
         { name: 'Search Caregivers', link: '/search-caregiver', icon: 'search', role: 'tutor' },
         { name: 'Your Reservations', link: '/reservations', icon: 'book', role: 'all' },
         { name: 'Payment methods', link: '/payment', icon: 'credit-card', role: 'all' },
-        { name: 'Your service', link: '/your-service', icon: 'book', role: 'caregiver' }
+        { name: 'Your service', link: '/your-service', icon: 'book', role: 'caregiver' },
+        { name: 'Online Chat', link: '/chat', icon: 'headphones', role: 'all' }
+
       ],
       filteredMenuList: []
     };
