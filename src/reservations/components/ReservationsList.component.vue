@@ -6,7 +6,6 @@
   </div>
 </template>
 
-
 <script>
 import ReservationCard from './ReservationCard.component.vue';
 
