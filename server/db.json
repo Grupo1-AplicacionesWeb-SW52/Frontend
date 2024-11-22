@@ -10,6 +10,28 @@
       "profileImg": "https://randomuser.me/api/portraits/med/women/49.jpg",
       "address": "Av. Los Pinos 123",
       "district": "San Miguel"
+    },
+    {
+      "id": 2,
+      "fullName": "Renzo Suarez",
+      "email": "renzo.perez@example.com",
+      "phone": "987654223",
+      "document": "04501201",
+      "password": "renzo123",
+      "profileImg": "https://randomuser.me/api/portraits/med/men/47.jpg",
+      "address": "Av. Los Andes 342",
+      "district": "Pueblo Libre"
+    },
+    {
+      "id": 3,
+      "fullName": "Ana de Armas",
+      "email": "ana_de_armas@example.com",
+      "phone": "987879032",
+      "document": "62547201",
+      "password": "ana123",
+      "profileImg": "https://randomuser.me/api/portraits/med/women/21.jpg",
+      "address": "Av. Replublica de Panama 234",
+      "district": "San Isidro"
     }
   ],
   "tutors": [
@@ -80,7 +102,7 @@
     },
     {
       "tutorId": 1,
-      "caregiverId": 1,
+      "caregiverId": 2,
       "serviceId": 1,
       "status": "pending",
       "createdAt": "2024-10-13T16:11:34.436Z",
@@ -94,7 +116,7 @@
     },
     {
       "tutorId": 1,
-      "caregiverId": 1,
+      "caregiverId": 3,
       "serviceId": 1,
       "status": "pending",
       "createdAt": "2024-10-13T18:16:35.255Z",
@@ -122,7 +144,7 @@
     },
     {
       "tutorId": 1,
-      "caregiverId": 1,
+      "caregiverId": 2,
       "serviceId": 1,
       "status": "pending",
       "createdAt": "2024-10-13T18:27:28.988Z",
@@ -136,7 +158,7 @@
     },
     {
       "tutorId": 1,
-      "caregiverId": 1,
+      "caregiverId": 3,
       "serviceId": 1,
       "status": "pending",
       "createdAt": "2024-10-13T18:28:26.340Z",
@@ -243,7 +265,7 @@
     },
     {
       "id": 2,
-      "user": { "name": "Juan Pérez", "profileImage": "https://randomuser.me/api/portraits/med/men/48.jpg" },
+      "user": { "name": "Renzo Suarez", "profileImage": "https://randomuser.me/api/portraits/med/men/47.jpg" },
       "lastMessage": "Estoy aquí para ayudarte.",
       "lastMessageDate": "2024-10-27T13:45:00"
     }
