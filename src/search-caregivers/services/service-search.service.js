@@ -7,15 +7,21 @@ class ServiceSearchService {
 	}
 
 	// Método para obtener todos los servicios
-	async getAll() {
+	async getAll(params = {}) {
 		try {
-			const response = await http.get(`${this.basePath}?_expand=caregiver`);
+			// Combina los parámetros predeterminados con los que se pasen
+			const defaultParams = { _expand: 'caregiver' };
+			const response = await http.get(this.basePath, {
+				params: { ...defaultParams, ...params },
+			});
 			return response.data;
 		} catch (error) {
 			this.handleError(error);
 			return null;
 		}
 	}
+
+
 
 	// Método para obtener un servicio por ID
 	async getById(id) {
@@ -45,8 +51,9 @@ class ServiceSearchService {
 
 	// Manejo de errores
 	handleError(error) {
-		console.error('Error en ServiceSearchService:', error);
-		throw new Error('Error al obtener los datos del servicio.');
+		const message = error.response?.data?.message || 'Error desconocido';
+		console.error('Error en ServiceSearchService:', message);
+		throw new Error(message);
 	}
 }
 
