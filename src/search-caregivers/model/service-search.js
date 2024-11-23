@@ -1,5 +1,6 @@
-import { User } from './User';
+
 import { Schedule } from './schedule';
+import {User} from "../../auth/model/user.js";
 
 export class ServiceSearch {
 	constructor(

@@ -7,7 +7,7 @@
 
 <script>
 import { ReservationsApiService } from '../services/reservations-api.service.js';
-import ReservationList from '../components/ReservationsList.component.vue';
+import ReservationList from '../components/reservations-list.component.vue';
 
 export default {
   name: 'ReservationPage',

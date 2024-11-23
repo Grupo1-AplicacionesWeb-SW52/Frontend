@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import ReservationCard from './ReservationCard.component.vue';
+import ReservationCard from './reservation-card.component.vue';
 import Paginator from 'primevue/paginator';
 
 export default {
