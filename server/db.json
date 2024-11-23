@@ -159,7 +159,6 @@
       "rating": 4.5
     }
 
-
   ],
   "reservations": [
     {
@@ -259,6 +258,20 @@
       },
       "totalFare": 28.8,
       "id": 7
+    },
+    {
+      "caregiverId": 3,
+      "createdAt": "2024-11-23T01:32:59.868Z",
+      "schedule": {
+        "day": "mon",
+        "workHours": {
+          "startTime": "08:00",
+          "endTime": "16:00"
+        }
+      },
+      "status": "pending",
+      "totalFare": 0,
+      "id": 8
     }
   ],
   "payments": [
@@ -335,13 +348,19 @@
   "chats": [
     {
       "id": 1,
-      "user": { "name": "María López", "profileImage": "https://randomuser.me/api/portraits/med/women/49.jpg" },
+      "user": {
+        "name": "María López",
+        "profileImage": "https://randomuser.me/api/portraits/med/women/49.jpg"
+      },
       "lastMessage": "¿Cuándo necesitas los cuidados?",
       "lastMessageDate": "2024-10-27T14:30:00"
     },
     {
       "id": 2,
-      "user": { "name": "Renzo Suarez", "profileImage": "https://randomuser.me/api/portraits/med/men/47.jpg" },
+      "user": {
+        "name": "Renzo Suarez",
+        "profileImage": "https://randomuser.me/api/portraits/med/men/47.jpg"
+      },
       "lastMessage": "Estoy aquí para ayudarte.",
       "lastMessageDate": "2024-10-27T13:45:00"
     }
