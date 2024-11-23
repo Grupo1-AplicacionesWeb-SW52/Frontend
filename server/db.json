@@ -83,7 +83,83 @@
       ],
       "farePerHour": 3.2,
       "rating": 4.5
+    },
+
+    {
+      "id": 2,
+      "caregiverId": 2,
+      "description": "I am dedicated to providing exceptional care for your loved one, ensuring they feel safe, comfortable, and valued. My approach is rooted in patience, and I am committed to creating a safe environment where they can thrive.My approach is centered on empathy, patience, and a genuine passion for caregiving. I strive to create a positive and supportive atmosphere where your loved one can thrive and feel valued. Whether it's through engaging activities, attentive care, or simply being a supportive presence, I am here to offer the best possible care tailored to their needs",
+      "schedules": [
+        {
+          "day": "mon",
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "16:00"
+          }
+        },
+        {
+          "day": "thu",
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "16:00"
+          }
+        },
+        {
+          "day": "fri",
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "12:00"
+          }
+        }
+      ],
+      "workaround": [
+        "San Miguel",
+        "Magdalena",
+        "Surquillo",
+        "San Isidro"
+      ],
+      "farePerHour": 3.2,
+      "rating": 4.5
+    },
+
+    {
+      "id": 3,
+      "caregiverId": 3,
+      "description": "Hello, I will take care of your loved one with the greatest dedication and affection. I understand the importance of offering a safe and nurturing environment, and I am committed to ensuring that your loved one feels comfortable and well-cared for at all times. With a deep commitment to caregiving, I promise to look after your loved one with compassion and dedication. I understand the importance of a secure and nurturing environment, and I strive to make them feel at ease and well-cared for. My focus is on building a positive and supportive atmosphere, where they can enjoy enriching activities and receive the attentive care they deserve. I am here to ensure their well-being and happiness.",
+      "schedules": [
+        {
+          "day": "mon",
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "16:00"
+          }
+        },
+        {
+          "day": "thu",
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "16:00"
+          }
+        },
+        {
+          "day": "fri",
+          "workHours": {
+            "startTime": "08:00",
+            "endTime": "12:00"
+          }
+        }
+      ],
+      "workaround": [
+        "San Miguel",
+        "Magdalena",
+        "Surquillo",
+        "San Isidro"
+      ],
+      "farePerHour": 3.2,
+      "rating": 4.5
     }
+
+
   ],
   "reservations": [
     {
