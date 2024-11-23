@@ -1,4 +1,3 @@
-// src/models/User.js
 
 export class User {
 	constructor(
