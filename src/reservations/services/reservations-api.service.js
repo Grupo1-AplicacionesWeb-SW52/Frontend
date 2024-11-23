@@ -47,15 +47,16 @@ export class ReservationsApiService {
     }
 
     // Método para crear una nueva reserva (sin cambios)
-    async create(reservationResource) {
+    async create(data) {
         try {
-            const response = await http.post('/reservations', reservationResource);
+            const response = await http.post('/reservations', data);
             return response.data;
         } catch (error) {
             console.error('Error creating reservation:', error);
             throw error;
         }
     }
+
 
     // Método para actualizar una reserva (sin cambios)
     async update(id, reservationResource) {
