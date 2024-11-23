@@ -3,9 +3,9 @@
     <!-- Encabezado de la Tarjeta -->
     <div class="p-card-header p-d-flex p-jc-center p-ai-center">
       <img
-        :src="serviceSearch.caregiver.profileImg"
-        alt="A user"
-        class="caregiver-img"
+          :src="serviceSearch.caregiver.profileImg"
+          alt="A user"
+          class="caregiver-img"
       />
     </div>
 
@@ -18,58 +18,83 @@
 
     <!-- Acciones de la Tarjeta -->
     <div class="p-card-footer p-d-flex p-jc-center">
-      <router-link :to="`./${serviceSearch.id}`" class="p-text-center">
-        <pv-button label="See more" class="p-button-rounded p-button-outlined p-button-primary" />
-      </router-link>
+      <pv-button
+          label="Reserve"
+          icon="pi pi-calendar-plus"
+          class="p-button-rounded p-button-outlined p-button-primary"
+          @click="showConfirmDialog"
+      />
     </div>
+
+    <!-- Diálogo de Confirmación -->
+    <Dialog
+        header="Confirm Reservation"
+        :visible="dialogVisible"
+        modal
+        :closable="false"
+        @hide="closeDialog"
+    >
+      <p>Are you sure you want to make a reservation?</p>
+      <div class="p-d-flex p-jc-end p-gap-2">
+        <pv-button
+            label="Cancel"
+            class="p-button-text"
+            @click="closeDialog"
+        />
+        <pv-button
+            label="Accept"
+            icon="pi pi-check"
+            class="p-button-success"
+            @click="confirmReservation"
+        />
+      </div>
+    </Dialog>
   </div>
 </template>
 
 <script>
+import { ref } from 'vue';
+import Dialog from 'primevue/dialog';  // Importación necesaria
+import Button from 'primevue/button';  // Asegúrate de importar el Button también
 
 export default {
   name: 'CaregiverCardComponent',
-  components: {
-  },
   props: {
     serviceSearch: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
+  components: {
+    Dialog,  // Registrar el Dialog
+    Button,  // Registrar el Button
+  },
+  setup(props, { emit }) {
+    const dialogVisible = ref(false);
+
+    const showConfirmDialog = () => {
+      dialogVisible.value = true;
+    };
+
+    const closeDialog = () => {
+      dialogVisible.value = false;
+    };
+
+    const confirmReservation = () => {
+      emit('reserve', props.serviceSearch);
+      dialogVisible.value = false;
+    };
+
+    return {
+      dialogVisible,
+      showConfirmDialog,
+      closeDialog,
+      confirmReservation,
+    };
+  },
 };
 </script>
 
 <style scoped>
-.caregiver-card {
-  width: 100%;
-  max-width: 400px;
-  margin: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.caregiver-img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 0 auto;
-}
-
-.caregiver-name {
-  font-size: 1.5em;
-  margin: 0.5em 0;
-}
-
-.caregiver-address {
-  font-size: 1em;
-  color: #757575;
-}
-
-.caregiver-biography {
-  font-size: 1em;
-  color: #333;
-  margin-top: 1em;
-}
+/* Mantén tus estilos anteriores */
 </style>
