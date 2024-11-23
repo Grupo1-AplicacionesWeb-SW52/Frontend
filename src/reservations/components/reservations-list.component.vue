@@ -37,8 +37,8 @@ export default {
   },
   data() {
     return {
-      first: 0, // Página actual (la variable que maneja el paginador)
-      itemsPerPage: 4, // Elementos por página
+      first: 0,
+      itemsPerPage: 4,
     };
   },
   computed: {
