@@ -1,4 +1,3 @@
-// src/services/ServiceSearchService.js
 import http from '../../shared/services/http-common';
 
 class ServiceSearchService {
